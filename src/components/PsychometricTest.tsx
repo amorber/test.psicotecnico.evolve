@@ -35,9 +35,9 @@ const PsychometricTest = () => {
   return (
     <div className="flex flex-col space-y-8 py-6 px-4">
       <div className="text-center mb-6">
-        <h1 className="text-lg font-medium mb-2">Program Compatibility Assessment</h1>
+        <h1 className="text-lg font-medium mb-2">Evaluación de Compatibilidad con el Programa</h1>
         <p className="text-sm text-notion-mediumGray max-w-md mx-auto">
-          Take this quick assessment to see how well our Master's program aligns with your current skills and experience.
+          Realiza esta breve evaluación para ver cómo se alinea nuestro programa de Máster con tus habilidades y experiencia actuales.
         </p>
       </div>
       

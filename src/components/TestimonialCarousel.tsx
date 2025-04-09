@@ -24,7 +24,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   const handleMouseEnter = (id: string) => {
     const video = videoRefs.current[id];
     if (video) {
-      video.play().catch(err => console.error("Error playing video:", err));
+      video.play().catch(err => console.error("Error al reproducir video:", err));
       video.muted = false;
     }
   };
@@ -44,7 +44,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
 
   return (
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto">
-      <h3 className="text-base mb-6 text-center">Student Testimonials</h3>
+      <h3 className="text-base mb-6 text-center">Testimonios de Estudiantes</h3>
       
       <div className="relative">
         <div className="flex justify-center items-center">

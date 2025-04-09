@@ -31,46 +31,46 @@ export type Testimonial = {
 export const questions: Question[] = [
   {
     id: "q1",
-    text: "How comfortable are you with data analysis and statistical methods?",
+    text: "¿Qué tan cómodo/a te sientes con el análisis de datos y métodos estadísticos?",
     answers: [
-      { id: "q1a1", text: "Very comfortable, I use them regularly", value: 25 },
-      { id: "q1a2", text: "Somewhat comfortable, I have some experience", value: 18 },
-      { id: "q1a3", text: "Neutral, I understand the basics", value: 12 },
-      { id: "q1a4", text: "Not very comfortable, limited experience", value: 6 },
-      { id: "q1a5", text: "Not comfortable at all, no experience", value: 0 },
+      { id: "q1a1", text: "Muy cómodo/a, los uso regularmente", value: 25 },
+      { id: "q1a2", text: "Algo cómodo/a, tengo algo de experiencia", value: 18 },
+      { id: "q1a3", text: "Neutral, entiendo los conceptos básicos", value: 12 },
+      { id: "q1a4", text: "No muy cómodo/a, experiencia limitada", value: 6 },
+      { id: "q1a5", text: "Nada cómodo/a, sin experiencia", value: 0 },
     ],
   },
   {
     id: "q2",
-    text: "How would you rate your current project management skills?",
+    text: "¿Cómo calificarías tus habilidades actuales en gestión de proyectos?",
     answers: [
-      { id: "q2a1", text: "Expert, I lead complex projects", value: 25 },
-      { id: "q2a2", text: "Advanced, I can manage most projects well", value: 18 },
-      { id: "q2a3", text: "Intermediate, I can handle basic projects", value: 12 },
-      { id: "q2a4", text: "Basic, I need guidance with projects", value: 6 },
-      { id: "q2a5", text: "Beginner, little to no experience", value: 0 },
+      { id: "q2a1", text: "Experto/a, lidero proyectos complejos", value: 25 },
+      { id: "q2a2", text: "Avanzado/a, puedo gestionar la mayoría de los proyectos bien", value: 18 },
+      { id: "q2a3", text: "Intermedio/a, puedo manejar proyectos básicos", value: 12 },
+      { id: "q2a4", text: "Básico/a, necesito orientación con los proyectos", value: 6 },
+      { id: "q2a5", text: "Principiante, poca o ninguna experiencia", value: 0 },
     ],
   },
   {
     id: "q3",
-    text: "What is your experience level with strategic planning and decision-making?",
+    text: "¿Cuál es tu nivel de experiencia en planificación estratégica y toma de decisiones?",
     answers: [
-      { id: "q3a1", text: "Extensive experience in strategic roles", value: 25 },
-      { id: "q3a2", text: "Good experience with strategic initiatives", value: 18 },
-      { id: "q3a3", text: "Some exposure to strategic planning", value: 12 },
-      { id: "q3a4", text: "Limited involvement in strategic decisions", value: 6 },
-      { id: "q3a5", text: "No experience with strategic planning", value: 0 },
+      { id: "q3a1", text: "Amplia experiencia en roles estratégicos", value: 25 },
+      { id: "q3a2", text: "Buena experiencia con iniciativas estratégicas", value: 18 },
+      { id: "q3a3", text: "Alguna exposición a la planificación estratégica", value: 12 },
+      { id: "q3a4", text: "Participación limitada en decisiones estratégicas", value: 6 },
+      { id: "q3a5", text: "Sin experiencia en planificación estratégica", value: 0 },
     ],
   },
   {
     id: "q4",
-    text: "How would you describe your leadership and team management abilities?",
+    text: "¿Cómo describirías tus habilidades de liderazgo y gestión de equipos?",
     answers: [
-      { id: "q4a1", text: "Strong leader, experienced with diverse teams", value: 25 },
-      { id: "q4a2", text: "Effective leader in most situations", value: 18 },
-      { id: "q4a3", text: "Developing leader with some experience", value: 12 },
-      { id: "q4a4", text: "Emerging leader, limited experience", value: 6 },
-      { id: "q4a5", text: "No leadership experience yet", value: 0 },
+      { id: "q4a1", text: "Líder fuerte, experimentado con equipos diversos", value: 25 },
+      { id: "q4a2", text: "Líder eficaz en la mayoría de situaciones", value: 18 },
+      { id: "q4a3", text: "Líder en desarrollo con alguna experiencia", value: 12 },
+      { id: "q4a4", text: "Líder emergente, experiencia limitada", value: 6 },
+      { id: "q4a5", text: "Sin experiencia de liderazgo aún", value: 0 },
     ],
   },
 ];
@@ -79,33 +79,33 @@ export const questions: Question[] = [
 export const testimonials: Testimonial[] = [
   {
     id: "t1",
-    name: "Alex Johnson",
-    role: "Data Scientist",
-    testimonial: "This program transformed my career. I gained practical skills that I use daily.",
+    name: "Alejandro Jiménez",
+    role: "Científico de Datos",
+    testimonial: "Este programa transformó mi carrera. Adquirí habilidades prácticas que uso a diario.",
     videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
     thumbnailUrl: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=528",
   },
   {
     id: "t2",
-    name: "Sarah Chen",
+    name: "Sara Carreño",
     role: "Product Manager",
-    testimonial: "The strategic frameworks taught here helped me lead my team to success.",
+    testimonial: "Los marcos estratégicos enseñados aquí me ayudaron a liderar mi equipo hacia el éxito.",
     videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
     thumbnailUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=528",
   },
   {
     id: "t3",
-    name: "Michael Taylor",
-    role: "Marketing Director",
-    testimonial: "I gained a competitive edge in my field. Worth every minute invested.",
+    name: "Miguel Torres",
+    role: "Director de Marketing",
+    testimonial: "Obtuve una ventaja competitiva en mi campo. Vale cada minuto invertido.",
     videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
     thumbnailUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=528",
   },
   {
     id: "t4",
-    name: "Jennifer Lee",
-    role: "Operations Manager",
-    testimonial: "The program's analytical approach revolutionized my decision-making process.",
+    name: "Julia López",
+    role: "Gerente de Operaciones",
+    testimonial: "El enfoque analítico del programa revolucionó mi proceso de toma de decisiones.",
     videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
     thumbnailUrl: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=528",
   },
@@ -139,35 +139,35 @@ export const calculateTestResult = (selectedAnswers: Record<string, Answer>): Te
     .filter(a => a.ratio < 0.6)
     .sort((a, b) => a.ratio - b.ratio);
   
-  let strengthArea = "overall business acumen";
-  let improvementArea = "foundational skills";
+  let strengthArea = "conocimientos generales de negocios";
+  let improvementArea = "habilidades fundamentales";
   
   if (strengths.length > 0) {
     const topStrength = strengths[0].questionIndex;
-    if (topStrength === 0) strengthArea = "data analysis and statistical methods";
-    if (topStrength === 1) strengthArea = "project management";
-    if (topStrength === 2) strengthArea = "strategic planning";
-    if (topStrength === 3) strengthArea = "leadership and team management";
+    if (topStrength === 0) strengthArea = "análisis de datos y métodos estadísticos";
+    if (topStrength === 1) strengthArea = "gestión de proyectos";
+    if (topStrength === 2) strengthArea = "planificación estratégica";
+    if (topStrength === 3) strengthArea = "liderazgo y gestión de equipos";
   }
   
   if (improvements.length > 0) {
     const topImprovement = improvements[0].questionIndex;
-    if (topImprovement === 0) improvementArea = "data analysis skills";
-    if (topImprovement === 1) improvementArea = "project management capabilities";
-    if (topImprovement === 2) improvementArea = "strategic thinking";
-    if (topImprovement === 3) improvementArea = "leadership abilities";
+    if (topImprovement === 0) improvementArea = "habilidades de análisis de datos";
+    if (topImprovement === 1) improvementArea = "capacidades de gestión de proyectos";
+    if (topImprovement === 2) improvementArea = "pensamiento estratégico";
+    if (topImprovement === 3) improvementArea = "habilidades de liderazgo";
   }
   
   // Generate overall assessment
   let overallAssessment = "";
   if (percentage >= 80) {
-    overallAssessment = `You show exceptional compatibility with this program. With your strong ${strengthArea}, you're likely to excel and can focus on further developing your ${improvementArea}.`;
+    overallAssessment = `Muestras una compatibilidad excepcional con este programa. Con tu sólido ${strengthArea}, es probable que sobresalgas y puedas centrarte en desarrollar aún más tus ${improvementArea}.`;
   } else if (percentage >= 60) {
-    overallAssessment = `This program is a good match for you. Your ${strengthArea} provides a solid foundation, while the curriculum will help strengthen your ${improvementArea}.`;
+    overallAssessment = `Este programa es una buena opción para ti. Tu ${strengthArea} proporciona una base sólida, mientras que el plan de estudios te ayudará a fortalecer tus ${improvementArea}.`;
   } else if (percentage >= 40) {
-    overallAssessment = `You have moderate compatibility with this program. While you have some knowledge in ${strengthArea}, you'll benefit significantly from the comprehensive coverage of ${improvementArea}.`;
+    overallAssessment = `Tienes una compatibilidad moderada con este programa. Aunque tienes algunos conocimientos en ${strengthArea}, te beneficiarás significativamente de la cobertura integral de ${improvementArea}.`;
   } else {
-    overallAssessment = `This program will be challenging but rewarding for you. It will provide fundamental knowledge and skills, particularly in ${improvementArea}, while building upon your existing ${strengthArea}.`;
+    overallAssessment = `Este programa será desafiante pero gratificante para ti. Te proporcionará conocimientos y habilidades fundamentales, particularmente en ${improvementArea}, mientras construye sobre tu existente ${strengthArea}.`;
   }
   
   return {

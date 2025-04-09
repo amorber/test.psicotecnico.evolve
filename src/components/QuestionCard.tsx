@@ -28,7 +28,7 @@ const QuestionCard = ({ question, onAnswer, currentIndex, totalQuestions }: Ques
     <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
       <div className="flex justify-between items-center mb-6">
         <span className="text-xs text-notion-mediumGray">
-          Question {currentIndex + 1} of {totalQuestions}
+          Pregunta {currentIndex + 1} de {totalQuestions}
         </span>
         <div className="h-1 flex-1 ml-4 bg-notion-lightGray rounded-full overflow-hidden">
           <div 
@@ -63,7 +63,7 @@ const QuestionCard = ({ question, onAnswer, currentIndex, totalQuestions }: Ques
           disabled={!selectedAnswer}
           className="notion-button"
         >
-          Continue
+          Continuar
         </Button>
       </div>
     </div>
