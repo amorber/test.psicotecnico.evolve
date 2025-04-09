@@ -3,14 +3,16 @@ import type { TestResult as TestResultType } from "@/lib/psychometric-data";
 
 interface TestResultProps {
   result: TestResultType;
+  userInfo: {
+    fullName: string;
+    email: string;
+  };
 }
 
-const TestResult = ({ result }: TestResultProps) => {
+const TestResult = ({ result, userInfo }: TestResultProps) => {
   return (
     <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
-      <div className="mb-6 text-center">
-        <h3 className="text-lg font-medium mb-4">Tu Evaluación de Compatibilidad</h3>
-        
+      <div className="mb-6 text-center">        
         <div className="text-4xl font-bold mb-4 text-notion-text">
           {result.percentage}%
         </div>
@@ -36,11 +38,11 @@ const TestResult = ({ result }: TestResultProps) => {
       
       <div className="pt-4 border-t border-notion-lightGray">
         <div className="flex">
-          <div className="w-1/2 pr-4">
+          <div className="w-1/2 pr-4 text-center">
             <h4 className="text-xs font-medium uppercase tracking-wider text-notion-mediumGray mb-2">Tus Fortalezas</h4>
             <p className="text-sm">{result.strengthArea}</p>
           </div>
-          <div className="w-1/2 pl-4 border-l border-notion-lightGray">
+          <div className="w-1/2 pl-4 border-l border-notion-lightGray text-center">
             <h4 className="text-xs font-medium uppercase tracking-wider text-notion-mediumGray mb-2">Áreas a Desarrollar</h4>
             <p className="text-sm">{result.improvementArea}</p>
           </div>

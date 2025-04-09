@@ -1,5 +1,5 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -12,6 +12,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const isMobile = useIsMobile();
+  const autoRotateInterval = useRef<number | null>(null);
   
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -27,6 +28,12 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
       video.play().catch(err => console.error("Error al reproducir video:", err));
       video.muted = false;
     }
+    
+    // Clear auto-rotation on user interaction
+    if (autoRotateInterval.current) {
+      window.clearInterval(autoRotateInterval.current);
+      autoRotateInterval.current = null;
+    }
   };
   
   const handleMouseLeave = (id: string) => {
@@ -36,11 +43,36 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
       video.currentTime = 0;
       video.muted = true;
     }
+    
+    // Restart auto-rotation
+    startAutoRotation();
   };
   
   const wrapIndex = (index: number) => {
     return (index + testimonials.length) % testimonials.length;
   };
+  
+  const startAutoRotation = () => {
+    if (autoRotateInterval.current) {
+      window.clearInterval(autoRotateInterval.current);
+    }
+    
+    autoRotateInterval.current = window.setInterval(() => {
+      handleNext();
+    }, 5000);
+  };
+  
+  useEffect(() => {
+    // Start auto-rotation when component mounts
+    startAutoRotation();
+    
+    // Clean up interval on unmount
+    return () => {
+      if (autoRotateInterval.current) {
+        window.clearInterval(autoRotateInterval.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto">
@@ -51,7 +83,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           {/* Left Video */}
           {!isMobile && (
             <div 
-              className="w-1/4 transition-all duration-300 opacity-60 transform scale-90 cursor-pointer"
+              className="w-1/3 transition-all duration-300 opacity-60 transform scale-90 cursor-pointer"
               onClick={() => setActiveIndex(wrapIndex(activeIndex - 1))}
             >
               <div className="relative rounded-xl overflow-hidden shadow-notion">
@@ -71,7 +103,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           )}
           
           {/* Center Video */}
-          <div className="w-full sm:w-1/2 px-2 z-10">
+          <div className="w-full sm:w-1/3 px-2 z-10 transform scale-105">
             <div className="relative rounded-xl overflow-hidden shadow-notion">
               <video
                 ref={(el) => (videoRefs.current[testimonials[activeIndex].id] = el)}
@@ -95,7 +127,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           {/* Right Video */}
           {!isMobile && (
             <div 
-              className="w-1/4 transition-all duration-300 opacity-60 transform scale-90 cursor-pointer"
+              className="w-1/3 transition-all duration-300 opacity-60 transform scale-90 cursor-pointer"
               onClick={() => setActiveIndex(wrapIndex(activeIndex + 1))}
             >
               <div className="relative rounded-xl overflow-hidden shadow-notion">

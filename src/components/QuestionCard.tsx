@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Question, Answer } from "@/lib/psychometric-data";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface QuestionCardProps {
@@ -25,7 +25,7 @@ const QuestionCard = ({
   selectedAnswer: existingSelectedAnswer
 }: QuestionCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(existingSelectedAnswer);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     setSelectedAnswer(existingSelectedAnswer);
@@ -33,13 +33,13 @@ const QuestionCard = ({
 
   const handleSelectAnswer = (answer: Answer) => {
     setSelectedAnswer(answer);
-    setShowConfirmation(true);
+    setAnimate(true);
     
     // Auto advance after selection with a small delay for animation
     setTimeout(() => {
       onAnswer(question.id, answer);
       onNext();
-      setShowConfirmation(false);
+      setAnimate(false);
     }, 500);
   };
 
@@ -65,8 +65,8 @@ const QuestionCard = ({
             key={answer.id}
             className={cn(
               "notion-input-option",
-              selectedAnswer?.id === answer.id ? 'selected' : '',
-              showConfirmation && selectedAnswer?.id === answer.id ? 'animate-pulse' : ''
+              selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/80' : '',
+              animate && selectedAnswer?.id === answer.id ? 'animate-pulse' : ''
             )}
             onClick={() => handleSelectAnswer(answer)}
           >
@@ -76,9 +76,6 @@ const QuestionCard = ({
               )}
             </div>
             <span className="text-sm">{answer.text}</span>
-            {showConfirmation && selectedAnswer?.id === answer.id && (
-              <CheckCircle className="ml-auto text-green-500" size={20} />
-            )}
           </div>
         ))}
       </div>
@@ -88,19 +85,21 @@ const QuestionCard = ({
           onClick={onPrevious}
           disabled={currentIndex === 0}
           variant="outline"
-          className="notion-button"
+          className="notion-button text-xs px-3 py-1 h-8"
+          size="sm"
         >
-          <ArrowLeft size={16} className="mr-2" />
+          <ArrowLeft size={14} className="mr-1" />
           Anterior
         </Button>
         
         <Button 
           onClick={onNext}
           disabled={!selectedAnswer || currentIndex >= totalQuestions - 1}
-          className="notion-button"
+          className="notion-button text-xs px-3 py-1 h-8"
+          size="sm"
         >
           Siguiente
-          <ArrowRight size={16} className="ml-2" />
+          <ArrowRight size={14} className="ml-1" />
         </Button>
       </div>
     </div>
