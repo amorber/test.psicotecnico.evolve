@@ -1,27 +1,46 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Question, Answer } from "@/lib/psychometric-data";
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface QuestionCardProps {
   question: Question;
   onAnswer: (questionId: string, answer: Answer) => void;
   currentIndex: number;
   totalQuestions: number;
+  onPrevious: () => void;
+  onNext: () => void;
+  selectedAnswer: Answer | null;
 }
 
-const QuestionCard = ({ question, onAnswer, currentIndex, totalQuestions }: QuestionCardProps) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(null);
+const QuestionCard = ({ 
+  question, 
+  onAnswer, 
+  currentIndex, 
+  totalQuestions,
+  onPrevious,
+  onNext,
+  selectedAnswer: existingSelectedAnswer
+}: QuestionCardProps) => {
+  const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(existingSelectedAnswer);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  useEffect(() => {
+    setSelectedAnswer(existingSelectedAnswer);
+  }, [existingSelectedAnswer, question.id]);
 
   const handleSelectAnswer = (answer: Answer) => {
     setSelectedAnswer(answer);
-  };
-
-  const handleContinue = () => {
-    if (selectedAnswer) {
-      onAnswer(question.id, selectedAnswer);
-    }
+    setShowConfirmation(true);
+    
+    // Auto advance after selection with a small delay for animation
+    setTimeout(() => {
+      onAnswer(question.id, answer);
+      onNext();
+      setShowConfirmation(false);
+    }, 500);
   };
 
   return (
@@ -41,10 +60,14 @@ const QuestionCard = ({ question, onAnswer, currentIndex, totalQuestions }: Ques
       <h3 className="text-base mb-6">{question.text}</h3>
       
       <div className="space-y-3">
-        {question.answers.map((answer) => (
+        {question.answers.slice(0, 3).map((answer) => (
           <div
             key={answer.id}
-            className={`notion-input-option ${selectedAnswer?.id === answer.id ? 'selected' : ''}`}
+            className={cn(
+              "notion-input-option",
+              selectedAnswer?.id === answer.id ? 'selected' : '',
+              showConfirmation && selectedAnswer?.id === answer.id ? 'animate-pulse' : ''
+            )}
             onClick={() => handleSelectAnswer(answer)}
           >
             <div className="w-5 h-5 flex-shrink-0 border border-notion-mediumGray rounded-full flex items-center justify-center">
@@ -53,17 +76,31 @@ const QuestionCard = ({ question, onAnswer, currentIndex, totalQuestions }: Ques
               )}
             </div>
             <span className="text-sm">{answer.text}</span>
+            {showConfirmation && selectedAnswer?.id === answer.id && (
+              <CheckCircle className="ml-auto text-green-500" size={20} />
+            )}
           </div>
         ))}
       </div>
       
-      <div className="mt-8 flex justify-end">
+      <div className="mt-8 flex justify-between">
         <Button 
-          onClick={handleContinue}
-          disabled={!selectedAnswer}
+          onClick={onPrevious}
+          disabled={currentIndex === 0}
+          variant="outline"
           className="notion-button"
         >
-          Continuar
+          <ArrowLeft size={16} className="mr-2" />
+          Anterior
+        </Button>
+        
+        <Button 
+          onClick={onNext}
+          disabled={!selectedAnswer || currentIndex >= totalQuestions - 1}
+          className="notion-button"
+        >
+          Siguiente
+          <ArrowRight size={16} className="ml-2" />
         </Button>
       </div>
     </div>

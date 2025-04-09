@@ -17,18 +17,22 @@ const PsychometricTest = () => {
       ...prev,
       [questionId]: answer
     }));
-    
-    // Move to next question or complete the test
+  };
+  
+  const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       // Calculate and set results
-      const result = calculateTestResult({
-        ...answers,
-        [questionId]: answer
-      });
+      const result = calculateTestResult(answers);
       setTestResult(result);
       setTestCompleted(true);
+    }
+  };
+  
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1);
     }
   };
   
@@ -47,6 +51,9 @@ const PsychometricTest = () => {
           onAnswer={handleAnswer}
           currentIndex={currentQuestionIndex}
           totalQuestions={questions.length}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          selectedAnswer={answers[questions[currentQuestionIndex].id] || null}
         />
       ) : (
         <>

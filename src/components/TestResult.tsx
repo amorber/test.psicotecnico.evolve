@@ -8,8 +8,13 @@ interface TestResultProps {
 const TestResult = ({ result }: TestResultProps) => {
   return (
     <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
-      <div className="mb-6">
-        <h3 className="text-base mb-2">Tu Evaluación de Compatibilidad</h3>
+      <div className="mb-6 text-center">
+        <h3 className="text-lg font-medium mb-4">Tu Evaluación de Compatibilidad</h3>
+        
+        <div className="text-4xl font-bold mb-4 text-notion-text">
+          {result.percentage}%
+        </div>
+        
         <div className="h-3 w-full bg-notion-lightGray rounded-full overflow-hidden mb-2">
           <div 
             className="h-full bg-notion-text transition-all duration-1000 ease-out"
@@ -24,12 +29,8 @@ const TestResult = ({ result }: TestResultProps) => {
       </div>
       
       <div className="mb-6">
-        <h4 className="text-sm font-medium mb-2">Resultado</h4>
-        <p className="text-sm mb-3">
-          Este máster es una <span className="font-medium">coincidencia del {result.percentage}%</span> con tus conocimientos y habilidades, y te ayudará especialmente a fortalecer {result.improvementArea}.
-        </p>
-        <p className="text-sm">
-          {result.overallAssessment}
+        <p className="text-sm mb-3 text-center">
+          Este máster es una <span className="font-medium">coincidencia del {result.percentage}%</span> con tus conocimientos y habilidades.
         </p>
       </div>
       
