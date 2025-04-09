@@ -59,7 +59,6 @@ const PsychometricTest = () => {
 
       {!formSubmitted ? (
         <div className="notion-card w-full max-w-md mx-auto">
-          <h3 className="text-base mb-4">Tus datos</h3>
           <form onSubmit={handleUserInfoSubmit} className="space-y-4">
             <div>
               <label htmlFor="fullName" className="block text-sm font-medium mb-1">Nombre completo</label>
@@ -83,7 +82,7 @@ const PsychometricTest = () => {
               />
             </div>
             <Button type="submit" className="w-full notion-button">
-              Comenzar evaluación
+              Comenzar
             </Button>
           </form>
         </div>
