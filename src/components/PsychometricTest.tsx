@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Question, Answer, TestResult, questions, testimonials, calculateTestResult } from "@/lib/psychometric-data";
 import QuestionCard from "./QuestionCard";
@@ -19,7 +18,6 @@ const PsychometricTest = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   
   const handleAnswer = (questionId: string, answer: Answer) => {
-    // Save the answer
     setAnswers(prev => ({
       ...prev,
       [questionId]: answer
@@ -30,7 +28,6 @@ const PsychometricTest = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
-      // Calculate and set results
       const result = calculateTestResult(answers);
       setTestResult(result);
       setTestCompleted(true);
@@ -51,9 +48,9 @@ const PsychometricTest = () => {
   return (
     <div className="flex flex-col space-y-8 py-6 px-4">
       <div className="text-center mb-6">
-        <h1 className="text-lg font-medium mb-2">Evaluación de Compatibilidad con el Programa</h1>
+        <h1 className="text-lg font-medium mb-2">Evaluación psicotécnica Evolve</h1>
         <p className="text-sm text-notion-mediumGray max-w-md mx-auto">
-          Realiza esta breve evaluación para ver cómo se alinea nuestro programa de Máster con tus habilidades y experiencia actuales.
+          Realiza esta breve evaluación psicotécnica para ver cómo se alinea nuestro Máster con tus habilidades y experiencia actuales.
         </p>
       </div>
 

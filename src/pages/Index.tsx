@@ -9,7 +9,7 @@ const Index = () => {
           <img 
             src="/lovable-uploads/5b650d58-f5d6-460f-b733-92bf8bfddff5.png" 
             alt="Logo" 
-            className="h-16 w-auto" 
+            className="h-12 w-auto" 
           />
         </div>
         <PsychometricTest />

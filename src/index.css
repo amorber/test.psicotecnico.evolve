@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -54,21 +53,40 @@
 
 @layer components {
   .notion-card {
-    @apply bg-white rounded-2xl shadow-notion p-6 transition-all duration-200;
+    @apply bg-white rounded-2xl shadow-notion p-6 transition-all duration-500;
   }
   
   .notion-button {
     @apply bg-notion-accent text-notion-text rounded-lg px-4 py-2 text-sm font-medium 
-           transition-all duration-150 hover:bg-notion-lightGray focus:outline-none focus:ring-2 
+           transition-all duration-300 hover:bg-notion-lightGray focus:outline-none focus:ring-2 
            focus:ring-notion-lightGray focus:ring-offset-1;
   }
   
   .notion-input-option {
     @apply flex items-center gap-3 p-3 rounded-lg border border-notion-lightGray
-           transition-all duration-150 hover:bg-notion-accent cursor-pointer;
+           transition-all duration-300 hover:bg-notion-accent cursor-pointer;
   }
   
   .notion-input-option.selected {
     @apply border-notion-text bg-notion-accent;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 800ms ease-out;
+}
+
+* {
+  transition-duration: 300ms !important;
 }
