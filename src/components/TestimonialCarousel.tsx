@@ -74,37 +74,40 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           {/* Left Testimonial */}
           {!isMobile && (
             <div 
-              className="w-1/3 transition-all duration-500 opacity-60 transform scale-90 cursor-pointer"
+              className="w-1/3 transition-all duration-700 opacity-60 transform scale-90 cursor-pointer"
               onClick={() => {
                 setActiveIndex(wrapIndex(activeIndex - 1));
                 // Reset auto-rotation after user interaction
                 startAutoRotation();
               }}
             >
-              <div className="relative rounded-xl overflow-hidden shadow-notion">
+              <div className="relative rounded-xl overflow-hidden shadow-lg transition-transform duration-700">
                 <img
                   src={testimonials[wrapIndex(activeIndex - 1)].thumbnailUrl}
                   alt={testimonials[wrapIndex(activeIndex - 1)].name}
                   className="w-full aspect-[9/16] object-cover"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <h4 className="text-white text-base font-medium">{testimonials[wrapIndex(activeIndex - 1)].name}</h4>
+                  <p className="text-white/80 text-sm">{testimonials[wrapIndex(activeIndex - 1)].role}</p>
+                </div>
               </div>
             </div>
           )}
           
           {/* Center Testimonial */}
-          <div className="w-full sm:w-1/3 px-2 z-10 transform scale-100">
+          <div className="w-full sm:w-1/3 px-2 z-10 transform scale-100 transition-all duration-700">
             <Dialog open={showDialog} onOpenChange={setShowDialog}>
               <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonials[activeIndex].videoUrl)}>
-                <div className="relative rounded-xl overflow-hidden shadow-notion cursor-pointer">
+                <div className="relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-shadow duration-500">
                   <img
                     src={testimonials[activeIndex].thumbnailUrl}
                     alt={testimonials[activeIndex].name}
                     className="w-full aspect-[9/16] object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                    <h4 className="text-white text-sm font-medium">{testimonials[activeIndex].name}</h4>
-                    <p className="text-white/80 text-xs">{testimonials[activeIndex].role}</p>
-                    <p className="text-white/90 text-xs mt-1">{testimonials[activeIndex].testimonial}</p>
+                    <h4 className="text-white text-base font-medium">{testimonials[activeIndex].name}</h4>
+                    <p className="text-white/80 text-sm">{testimonials[activeIndex].role}</p>
                   </div>
                 </div>
               </DialogTrigger>
@@ -131,19 +134,23 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           {/* Right Testimonial */}
           {!isMobile && (
             <div 
-              className="w-1/3 transition-all duration-500 opacity-60 transform scale-90 cursor-pointer"
+              className="w-1/3 transition-all duration-700 opacity-60 transform scale-90 cursor-pointer"
               onClick={() => {
                 setActiveIndex(wrapIndex(activeIndex + 1));
                 // Reset auto-rotation after user interaction
                 startAutoRotation();
               }}
             >
-              <div className="relative rounded-xl overflow-hidden shadow-notion">
+              <div className="relative rounded-xl overflow-hidden shadow-lg transition-transform duration-700">
                 <img
                   src={testimonials[wrapIndex(activeIndex + 1)].thumbnailUrl}
                   alt={testimonials[wrapIndex(activeIndex + 1)].name}
                   className="w-full aspect-[9/16] object-cover"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <h4 className="text-white text-base font-medium">{testimonials[wrapIndex(activeIndex + 1)].name}</h4>
+                  <p className="text-white/80 text-sm">{testimonials[wrapIndex(activeIndex + 1)].role}</p>
+                </div>
               </div>
             </div>
           )}
@@ -188,7 +195,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                   // Reset auto-rotation after user interaction
                   startAutoRotation();
                 }}
-                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                className={`w-2 h-2 rounded-full transition-colors duration-500 ${
                   index === activeIndex ? "bg-notion-text" : "bg-notion-lightGray"
                 }`}
               />
