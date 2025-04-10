@@ -4,7 +4,6 @@ import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { GlareCard } from "@/components/ui/glare-card";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -66,91 +65,99 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     };
   }, []);
 
-  // Custom card content renderer
-  const renderCardContent = (index: number) => (
-    <>
-      <img
-        src={testimonials[index].thumbnailUrl}
-        alt={testimonials[index].name}
-        className="w-full h-full absolute inset-0 object-cover"
-      />
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-5 z-10">
-        <h4 className="text-white text-lg font-medium">{testimonials[index].name}</h4>
-        <p className="text-white/90 text-sm mt-1">{testimonials[index].role}</p>
-      </div>
-    </>
-  );
-
   return (
-    <div className="animate-fade-in mt-12 w-full max-w-4xl mx-auto">
-      <h3 className="text-xl font-medium mb-8 text-center">Testimonios de Estudiantes</h3>
+    <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto">
+      <h3 className="text-base mb-6 text-center">Testimonios de Estudiantes</h3>
       
-      <div className="relative mx-auto flex justify-center items-center gap-4">
-        {/* Left Testimonial */}
-        {!isMobile && (
-          <div 
-            className="transition-all duration-700 transform scale-90 cursor-pointer"
-            onClick={() => {
-              setActiveIndex(wrapIndex(activeIndex - 1));
-              // Reset auto-rotation after user interaction
-              startAutoRotation();
-            }}
-          >
-            <GlareCard className="relative">
-              {renderCardContent(wrapIndex(activeIndex - 1))}
-            </GlareCard>
-          </div>
-        )}
-        
-        {/* Center Testimonial */}
-        <Dialog open={showDialog} onOpenChange={setShowDialog}>
-          <DialogTrigger asChild>
+      <div className="relative">
+        <div className="flex justify-center items-center">
+          {/* Left Testimonial */}
+          {!isMobile && (
             <div 
-              className="z-10 transform scale-105 transition-all duration-700"
-              onClick={() => handleThumbnailClick(testimonials[activeIndex].videoUrl)}
+              className="w-1/3 transition-all duration-700 opacity-60 transform scale-90 cursor-pointer"
+              onClick={() => {
+                setActiveIndex(wrapIndex(activeIndex - 1));
+                // Reset auto-rotation after user interaction
+                startAutoRotation();
+              }}
             >
-              <GlareCard className="relative cursor-pointer">
-                {renderCardContent(activeIndex)}
-              </GlareCard>
+              <div className="relative rounded-xl overflow-hidden shadow-lg transition-transform duration-700">
+                <img
+                  src={testimonials[wrapIndex(activeIndex - 1)].thumbnailUrl}
+                  alt={testimonials[wrapIndex(activeIndex - 1)].name}
+                  className="w-full aspect-[9/16] object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <h4 className="text-white text-base font-medium">{testimonials[wrapIndex(activeIndex - 1)].name}</h4>
+                  <p className="text-white/80 text-sm">{testimonials[wrapIndex(activeIndex - 1)].role}</p>
+                </div>
+              </div>
             </div>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
-            <div className="relative w-full aspect-video">
-              <button 
-                className="absolute top-2 right-2 bg-black/60 rounded-full p-1 z-10"
-                onClick={() => setShowDialog(false)}
-              >
-                <X size={20} className="text-white" />
-              </button>
-              <iframe
-                src={activeVideoUrl}
-                className="w-full h-full"
-                allowFullScreen
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
-            </div>
-          </DialogContent>
-        </Dialog>
-        
-        {/* Right Testimonial */}
-        {!isMobile && (
-          <div 
-            className="transition-all duration-700 transform scale-90 cursor-pointer"
-            onClick={() => {
-              setActiveIndex(wrapIndex(activeIndex + 1));
-              // Reset auto-rotation after user interaction
-              startAutoRotation();
-            }}
-          >
-            <GlareCard className="relative">
-              {renderCardContent(wrapIndex(activeIndex + 1))}
-            </GlareCard>
+          )}
+          
+          {/* Center Testimonial */}
+          <div className="w-full sm:w-1/3 px-2 z-10 transform scale-100 transition-all duration-700">
+            <Dialog open={showDialog} onOpenChange={setShowDialog}>
+              <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonials[activeIndex].videoUrl)}>
+                <div className="relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-shadow duration-500">
+                  <img
+                    src={testimonials[activeIndex].thumbnailUrl}
+                    alt={testimonials[activeIndex].name}
+                    className="w-full aspect-[9/16] object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <h4 className="text-white text-base font-medium">{testimonials[activeIndex].name}</h4>
+                    <p className="text-white/80 text-sm">{testimonials[activeIndex].role}</p>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
+                <div className="relative w-full aspect-video">
+                  <button 
+                    className="absolute top-2 right-2 bg-black/60 rounded-full p-1 z-10"
+                    onClick={() => setShowDialog(false)}
+                  >
+                    <X size={20} className="text-white" />
+                  </button>
+                  <iframe
+                    src={activeVideoUrl}
+                    className="w-full h-full"
+                    allowFullScreen
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
-        )}
+          
+          {/* Right Testimonial */}
+          {!isMobile && (
+            <div 
+              className="w-1/3 transition-all duration-700 opacity-60 transform scale-90 cursor-pointer"
+              onClick={() => {
+                setActiveIndex(wrapIndex(activeIndex + 1));
+                // Reset auto-rotation after user interaction
+                startAutoRotation();
+              }}
+            >
+              <div className="relative rounded-xl overflow-hidden shadow-lg transition-transform duration-700">
+                <img
+                  src={testimonials[wrapIndex(activeIndex + 1)].thumbnailUrl}
+                  alt={testimonials[wrapIndex(activeIndex + 1)].name}
+                  className="w-full aspect-[9/16] object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <h4 className="text-white text-base font-medium">{testimonials[wrapIndex(activeIndex + 1)].name}</h4>
+                  <p className="text-white/80 text-sm">{testimonials[wrapIndex(activeIndex + 1)].role}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         
         {/* Controls */}
-        <div className="absolute inset-y-0 left-0 -translate-x-12 flex items-center">
+        <div className="absolute inset-y-0 left-0 flex items-center">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -158,13 +165,12 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
               // Reset auto-rotation after user interaction
               startAutoRotation();
             }}
-            className="bg-white/90 rounded-full p-3 shadow-lg focus:outline-none transform hover:scale-105 transition-transform duration-300"
-            aria-label="Previous testimonial"
+            className="bg-white/90 rounded-full p-2 shadow-notion focus:outline-none transform hover:scale-105 transition-transform duration-300"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={16} />
           </button>
         </div>
-        <div className="absolute inset-y-0 right-0 translate-x-12 flex items-center">
+        <div className="absolute inset-y-0 right-0 flex items-center">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -172,16 +178,15 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
               // Reset auto-rotation after user interaction
               startAutoRotation();
             }}
-            className="bg-white/90 rounded-full p-3 shadow-lg focus:outline-none transform hover:scale-105 transition-transform duration-300"
-            aria-label="Next testimonial"
+            className="bg-white/90 rounded-full p-2 shadow-notion focus:outline-none transform hover:scale-105 transition-transform duration-300"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={16} />
           </button>
         </div>
         
         {/* Dots indicator for mobile */}
         {isMobile && (
-          <div className="absolute -bottom-10 left-0 right-0 flex justify-center mt-4 space-x-2">
+          <div className="flex justify-center mt-4 space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -193,7 +198,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                 className={`w-2 h-2 rounded-full transition-colors duration-500 ${
                   index === activeIndex ? "bg-notion-text" : "bg-notion-lightGray"
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
