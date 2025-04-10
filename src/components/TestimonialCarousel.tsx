@@ -93,20 +93,39 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           
           {/* Center Testimonial */}
           <div className="w-full sm:w-1/3 px-2 z-10 transform scale-100">
-            <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonials[activeIndex].videoUrl)}>
-              <div className="relative rounded-xl overflow-hidden shadow-notion cursor-pointer">
-                <img
-                  src={testimonials[activeIndex].thumbnailUrl}
-                  alt={testimonials[activeIndex].name}
-                  className="w-full aspect-[9/16] object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                  <h4 className="text-white text-sm font-medium">{testimonials[activeIndex].name}</h4>
-                  <p className="text-white/80 text-xs">{testimonials[activeIndex].role}</p>
-                  <p className="text-white/90 text-xs mt-1">{testimonials[activeIndex].testimonial}</p>
+            <Dialog open={showDialog} onOpenChange={setShowDialog}>
+              <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonials[activeIndex].videoUrl)}>
+                <div className="relative rounded-xl overflow-hidden shadow-notion cursor-pointer">
+                  <img
+                    src={testimonials[activeIndex].thumbnailUrl}
+                    alt={testimonials[activeIndex].name}
+                    className="w-full aspect-[9/16] object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <h4 className="text-white text-sm font-medium">{testimonials[activeIndex].name}</h4>
+                    <p className="text-white/80 text-xs">{testimonials[activeIndex].role}</p>
+                    <p className="text-white/90 text-xs mt-1">{testimonials[activeIndex].testimonial}</p>
+                  </div>
                 </div>
-              </div>
-            </DialogTrigger>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
+                <div className="relative w-full aspect-video">
+                  <button 
+                    className="absolute top-2 right-2 bg-black/60 rounded-full p-1 z-10"
+                    onClick={() => setShowDialog(false)}
+                  >
+                    <X size={20} className="text-white" />
+                  </button>
+                  <iframe
+                    src={activeVideoUrl}
+                    className="w-full h-full"
+                    allowFullScreen
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
           
           {/* Right Testimonial */}
@@ -177,27 +196,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           </div>
         )}
       </div>
-      
-      {/* Video Dialog */}
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
-          <div className="relative w-full aspect-video">
-            <button 
-              className="absolute top-2 right-2 bg-black/60 rounded-full p-1 z-10"
-              onClick={() => setShowDialog(false)}
-            >
-              <X size={20} className="text-white" />
-            </button>
-            <iframe
-              src={activeVideoUrl}
-              className="w-full h-full"
-              allowFullScreen
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
