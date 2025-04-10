@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -34,7 +35,7 @@
     --input: 0 0% 90%;
     --ring: 0 0% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   * {
@@ -53,7 +54,7 @@
 
 @layer components {
   .notion-card {
-    @apply bg-white rounded-2xl shadow-notion p-6 transition-all duration-500;
+    @apply bg-white rounded-xl shadow-notion p-6 transition-all duration-500;
   }
   
   .notion-button {
@@ -89,4 +90,21 @@
 
 * {
   transition-duration: 300ms !important;
+  border-radius: 0.5rem;
+}
+
+button, input, select, textarea {
+  border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 0.75rem;
+}
+
+.rounded-md {
+  border-radius: 0.625rem;
+}
+
+.rounded-sm {
+  border-radius: 0.5rem;
 }
