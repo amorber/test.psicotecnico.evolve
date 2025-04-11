@@ -58,7 +58,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 3000); // Change slides every 3 seconds
+    }, 5000); // Change slides every 5 seconds (increased from 3s to 5s)
   };
   
   useEffect(() => {
@@ -113,9 +113,9 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className="w-full aspect-[9/16] object-cover"
+                      className="w-full aspect-[9/16] object-cover rounded-xl"
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
                       <h4 className="text-white text-base font-medium">{testimonial.name}</h4>
                       <p className="text-white/80 text-sm">{testimonial.role}</p>
                     </div>
@@ -184,8 +184,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         </div>
       </Carousel>
       
-      {/* "Ver más testimonios" button */}
-      <div className="flex justify-center mt-6">
+      {/* "Ver más testimonios" button with added top padding */}
+      <div className="flex justify-center mt-8 pt-2">
         <a 
           href="https://evolveacademy.es/experiencias/#historias" 
           target="_blank" 

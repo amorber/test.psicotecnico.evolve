@@ -25,7 +25,6 @@ const QuestionCard = ({
   selectedAnswer: existingSelectedAnswer
 }: QuestionCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(existingSelectedAnswer);
-  const [animate, setAnimate] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
@@ -34,22 +33,16 @@ const QuestionCard = ({
 
   const handleSelectAnswer = (answer: Answer) => {
     setSelectedAnswer(answer);
-    setAnimate(true);
-    setIsTransitioning(true);
+    onAnswer(question.id, answer);
     
-    // Apply a shorter pulse effect for selection
+    // Add a smoother transition between questions with slight delay
+    setIsTransitioning(true);
     setTimeout(() => {
-      setAnimate(false);
-      onAnswer(question.id, answer);
-      
-      // Add a smoother transition between questions
+      onNext();
       setTimeout(() => {
-        onNext();
-        setTimeout(() => {
-          setIsTransitioning(false);
-        }, 300);
-      }, 500); // Longer delay for smoother question transition
-    }, 300); // Shorter pulse effect (300ms instead of 800ms)
+        setIsTransitioning(false);
+      }, 300);
+    }, 200);
   };
 
   return (
@@ -78,14 +71,13 @@ const QuestionCard = ({
             className={cn(
               "notion-input-option",
               selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/90' : '',
-              animate && selectedAnswer?.id === answer.id ? 'animate-pulse' : '',
               "transition-all duration-300 ease-in-out"
             )}
             onClick={() => handleSelectAnswer(answer)}
           >
             <div className="w-5 h-5 flex-shrink-0 border border-notion-mediumGray rounded-full flex items-center justify-center">
               {selectedAnswer?.id === answer.id && (
-                <div className="w-3 h-3 bg-notion-text rounded-full animate-scale-in" />
+                <div className="w-3 h-3 bg-notion-text rounded-full" />
               )}
             </div>
             <span className="text-sm">{answer.text}</span>
