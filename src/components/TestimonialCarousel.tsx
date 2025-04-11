@@ -1,7 +1,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { 
   Dialog, 
@@ -16,6 +16,7 @@ import {
   CarouselPrevious,
   CarouselNext
 } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -72,6 +73,22 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     };
   }, []);
 
+  const getItemClassName = (index: number) => {
+    // Calculate the distance from the active slide (considering circular nature)
+    const distance = Math.min(
+      Math.abs(index - activeIndex),
+      Math.abs(index - activeIndex - testimonials.length),
+      Math.abs(index - activeIndex + testimonials.length)
+    );
+    
+    // Center item
+    if (distance === 0) {
+      return "scale-100 opacity-100 z-10";
+    }
+    // Side items
+    return "scale-[0.85] opacity-60 z-0";
+  };
+
   return (
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-4 sm:px-0">
       <h3 className="text-base mb-6 text-center">Testimonios de Estudiantes</h3>
@@ -90,7 +107,9 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <Dialog open={showDialog} onOpenChange={setShowDialog}>
                 <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl, testimonial.name)}>
-                  <div className="relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.02]">
+                  <div 
+                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.03] ${getItemClassName(index)}`}
+                  >
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
@@ -164,6 +183,25 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           ))}
         </div>
       </Carousel>
+      
+      {/* "Ver más testimonios" button */}
+      <div className="flex justify-center mt-6">
+        <a 
+          href="https://evolveacademy.es/experiencias/#historias" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-xs text-notion-text hover:text-gray-800 transition-colors"
+        >
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="bg-white border-notion-lightGray hover:bg-notion-accent text-notion-mediumGray hover:text-notion-text transition-all gap-1 h-8 shadow-notion"
+          >
+            Ver más testimonios
+            <ExternalLink size={12} />
+          </Button>
+        </a>
+      </div>
     </div>
   );
 };

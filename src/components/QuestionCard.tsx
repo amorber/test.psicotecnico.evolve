@@ -37,21 +37,25 @@ const QuestionCard = ({
     setAnimate(true);
     setIsTransitioning(true);
     
-    // Auto advance after selection with a longer delay for smoother animation
+    // Apply a shorter pulse effect for selection
     setTimeout(() => {
+      setAnimate(false);
       onAnswer(question.id, answer);
+      
+      // Add a smoother transition between questions
       setTimeout(() => {
         onNext();
-        setAnimate(false);
-        setIsTransitioning(false);
-      }, 300); // Add a small delay before changing the question
-    }, 800); // Increase the delay before proceeding
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 300);
+      }, 500); // Longer delay for smoother question transition
+    }, 300); // Shorter pulse effect (300ms instead of 800ms)
   };
 
   return (
     <div className={cn(
-      "animate-fade-in notion-card w-full max-w-2xl mx-auto transition-opacity duration-700 ease-in-out",
-      isTransitioning ? "opacity-50" : "opacity-100"
+      "animate-fade-in notion-card w-full max-w-2xl mx-auto transition-all duration-1000 ease-in-out",
+      isTransitioning ? "opacity-50 translate-x-5" : "opacity-100 translate-x-0"
     )}>
       <div className="flex justify-between items-center mb-6">
         <span className="text-xs text-notion-mediumGray">
@@ -73,9 +77,9 @@ const QuestionCard = ({
             key={answer.id}
             className={cn(
               "notion-input-option",
-              selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/80' : '',
+              selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/90' : '',
               animate && selectedAnswer?.id === answer.id ? 'animate-pulse' : '',
-              "transition-all duration-500 ease-in-out"
+              "transition-all duration-300 ease-in-out"
             )}
             onClick={() => handleSelectAnswer(answer)}
           >
