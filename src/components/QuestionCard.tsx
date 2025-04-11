@@ -26,6 +26,7 @@ const QuestionCard = ({
 }: QuestionCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(existingSelectedAnswer);
   const [animate, setAnimate] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     setSelectedAnswer(existingSelectedAnswer);
@@ -34,24 +35,31 @@ const QuestionCard = ({
   const handleSelectAnswer = (answer: Answer) => {
     setSelectedAnswer(answer);
     setAnimate(true);
+    setIsTransitioning(true);
     
-    // Auto advance after selection with a small delay for animation
+    // Auto advance after selection with a longer delay for smoother animation
     setTimeout(() => {
       onAnswer(question.id, answer);
-      onNext();
-      setAnimate(false);
-    }, 500);
+      setTimeout(() => {
+        onNext();
+        setAnimate(false);
+        setIsTransitioning(false);
+      }, 300); // Add a small delay before changing the question
+    }, 800); // Increase the delay before proceeding
   };
 
   return (
-    <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
+    <div className={cn(
+      "animate-fade-in notion-card w-full max-w-2xl mx-auto transition-opacity duration-700 ease-in-out",
+      isTransitioning ? "opacity-50" : "opacity-100"
+    )}>
       <div className="flex justify-between items-center mb-6">
         <span className="text-xs text-notion-mediumGray">
           Pregunta {currentIndex + 1} de {totalQuestions}
         </span>
         <div className="h-1 flex-1 ml-4 bg-notion-lightGray rounded-full overflow-hidden">
           <div 
-            className="h-full bg-notion-text transition-all duration-300" 
+            className="h-full bg-notion-text transition-all duration-700 ease-in-out" 
             style={{ width: `${((currentIndex + 1) / totalQuestions) * 100}%` }} 
           />
         </div>
@@ -66,13 +74,14 @@ const QuestionCard = ({
             className={cn(
               "notion-input-option",
               selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/80' : '',
-              animate && selectedAnswer?.id === answer.id ? 'animate-pulse' : ''
+              animate && selectedAnswer?.id === answer.id ? 'animate-pulse' : '',
+              "transition-all duration-500 ease-in-out"
             )}
             onClick={() => handleSelectAnswer(answer)}
           >
             <div className="w-5 h-5 flex-shrink-0 border border-notion-mediumGray rounded-full flex items-center justify-center">
               {selectedAnswer?.id === answer.id && (
-                <div className="w-3 h-3 bg-notion-text rounded-full" />
+                <div className="w-3 h-3 bg-notion-text rounded-full animate-scale-in" />
               )}
             </div>
             <span className="text-sm">{answer.text}</span>
@@ -83,9 +92,9 @@ const QuestionCard = ({
       <div className="mt-8 flex justify-between">
         <Button 
           onClick={onPrevious}
-          disabled={currentIndex === 0}
+          disabled={currentIndex === 0 || isTransitioning}
           variant="outline"
-          className="notion-button text-xs px-3 py-1 h-8"
+          className="notion-button text-xs px-3 py-1 h-8 transition-all duration-300"
           size="sm"
         >
           <ArrowLeft size={14} className="mr-1" />
@@ -94,8 +103,8 @@ const QuestionCard = ({
         
         <Button 
           onClick={onNext}
-          disabled={!selectedAnswer || currentIndex >= totalQuestions - 1}
-          className="notion-button text-xs px-3 py-1 h-8"
+          disabled={!selectedAnswer || currentIndex >= totalQuestions - 1 || isTransitioning}
+          className="notion-button text-xs px-3 py-1 h-8 transition-all duration-300"
           size="sm"
         >
           Siguiente

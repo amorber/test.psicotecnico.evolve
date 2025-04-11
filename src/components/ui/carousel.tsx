@@ -17,6 +17,8 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
+  setActiveIndex?: (index: number) => void
+  activeIndex?: number
 }
 
 type CarouselContextProps = {
@@ -26,6 +28,8 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  activeIndex?: number
+  setActiveIndex?: (index: number) => void
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -52,6 +56,8 @@ const Carousel = React.forwardRef<
       plugins,
       className,
       children,
+      setActiveIndex,
+      activeIndex,
       ...props
     },
     ref
@@ -60,27 +66,36 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        loop: true,
+        duration: 50,
       },
       plugins
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
+    const [currentIndex, setCurrentIndex] = React.useState(activeIndex || 0)
 
     const onSelect = React.useCallback((api: CarouselApi) => {
       if (!api) {
         return
       }
 
+      const currentIndex = api.selectedScrollSnap()
+      setCurrentIndex(currentIndex)
+      if (setActiveIndex) {
+        setActiveIndex(currentIndex)
+      }
+      
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-    }, [])
+    }, [setActiveIndex])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev()
+      api?.scrollPrev({ duration: 700 })
     }, [api])
 
     const scrollNext = React.useCallback(() => {
-      api?.scrollNext()
+      api?.scrollNext({ duration: 700 })
     }, [api])
 
     const handleKeyDown = React.useCallback(
@@ -95,6 +110,12 @@ const Carousel = React.forwardRef<
       },
       [scrollPrev, scrollNext]
     )
+
+    React.useEffect(() => {
+      if (api && activeIndex !== undefined && activeIndex !== currentIndex) {
+        api.scrollTo(activeIndex, true)
+      }
+    }, [api, activeIndex, currentIndex])
 
     React.useEffect(() => {
       if (!api || !setApi) {
@@ -130,6 +151,8 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
+          activeIndex: currentIndex,
+          setActiveIndex,
         }}
       >
         <div
@@ -204,7 +227,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
           ? "-left-12 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
