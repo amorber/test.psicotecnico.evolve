@@ -128,62 +128,15 @@ export const testimonials: Testimonial[] = [
 
 // Calculate test results based on user answers
 export const calculateTestResult = (selectedAnswers: Record<string, Answer>): TestResult => {
-  // Calculate total points based on selected answers
-  const totalPossiblePoints = questions.length * 25; // Max 25 points per question
-  const earnedPoints = Object.values(selectedAnswers).reduce((total, answer) => 
-    total + (answer?.value || 0), 0);
+  // Always return 87% regardless of the answers
+  const percentage = 87;
   
-  const percentage = Math.round((earnedPoints / totalPossiblePoints) * 100);
+  // These values won't be displayed anymore but we still need to return them
+  const strengthArea = "conocimientos generales de negocios";
+  const improvementArea = "habilidades fundamentales";
   
-  // Determine strengths and areas for improvement based on answers
-  const answerValues = questions.map((q, index) => {
-    const answer = selectedAnswers[q.id];
-    return {
-      questionIndex: index,
-      value: answer?.value || 0,
-      maxValue: 25,
-      ratio: (answer?.value || 0) / 25,
-    };
-  });
-  
-  const strengths = answerValues
-    .filter(a => a.ratio >= 0.6)
-    .sort((a, b) => b.ratio - a.ratio);
-    
-  const improvements = answerValues
-    .filter(a => a.ratio < 0.6)
-    .sort((a, b) => a.ratio - b.ratio);
-  
-  let strengthArea = "conocimientos generales de negocios";
-  let improvementArea = "habilidades fundamentales";
-  
-  if (strengths.length > 0) {
-    const topStrength = strengths[0].questionIndex;
-    if (topStrength === 0) strengthArea = "análisis de datos y métodos estadísticos";
-    if (topStrength === 1) strengthArea = "gestión de proyectos";
-    if (topStrength === 2) strengthArea = "planificación estratégica";
-    if (topStrength === 3) strengthArea = "liderazgo y gestión de equipos";
-  }
-  
-  if (improvements.length > 0) {
-    const topImprovement = improvements[0].questionIndex;
-    if (topImprovement === 0) improvementArea = "habilidades de análisis de datos";
-    if (topImprovement === 1) improvementArea = "capacidades de gestión de proyectos";
-    if (topImprovement === 2) improvementArea = "pensamiento estratégico";
-    if (topImprovement === 3) improvementArea = "habilidades de liderazgo";
-  }
-  
-  // Generate overall assessment
-  let overallAssessment = "";
-  if (percentage >= 80) {
-    overallAssessment = `Muestras una compatibilidad excepcional con este programa. Con tu sólido ${strengthArea}, es probable que sobresalgas y puedas centrarte en desarrollar aún más tus ${improvementArea}.`;
-  } else if (percentage >= 60) {
-    overallAssessment = `Este programa es una buena opción para ti. Tu ${strengthArea} proporciona una base sólida, mientras que el plan de estudios te ayudará a fortalecer tus ${improvementArea}.`;
-  } else if (percentage >= 40) {
-    overallAssessment = `Tienes una compatibilidad moderada con este programa. Aunque tienes algunos conocimientos en ${strengthArea}, te beneficiarás significativamente de la cobertura integral de ${improvementArea}.`;
-  } else {
-    overallAssessment = `Este programa será desafiante pero gratificante para ti. Te proporcionará conocimientos y habilidades fundamentales, particularmente en ${improvementArea}, mientras construye sobre tu existente ${strengthArea}.`;
-  }
+  // Customized assessment message
+  const overallAssessment = "Tu perfil encaja al 87% con nuestro máster: tienes la base perfecta y este programa será el impulso que te llevará al siguiente nivel profesional.";
   
   return {
     percentage,
