@@ -46,6 +46,11 @@ const PsychometricTest = () => {
     setFormSubmitted(true);
   };
   
+  // Ensure we have a valid current question
+  const currentQuestion = questions[currentQuestionIndex];
+  // Get the current question's selected answer if it exists
+  const selectedAnswer = currentQuestion ? answers[currentQuestion.id] : null;
+  
   return (
     <div className="flex flex-col space-y-8 py-6 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
       <div className="text-center mb-6">
@@ -86,15 +91,19 @@ const PsychometricTest = () => {
             </form>
           </div>
         ) : !testCompleted ? (
-          <QuestionCard
-            question={questions[currentQuestionIndex]}
-            onAnswer={handleAnswer}
-            currentIndex={currentQuestionIndex}
-            totalQuestions={questions.length}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            selectedAnswer={answers[questions[currentQuestionIndex].id] || null}
-          />
+          currentQuestion ? (
+            <QuestionCard
+              question={currentQuestion}
+              onAnswer={handleAnswer}
+              currentIndex={currentQuestionIndex}
+              totalQuestions={questions.length}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              selectedAnswer={selectedAnswer}
+            />
+          ) : (
+            <div className="text-center">Error: No hay preguntas disponibles</div>
+          )
         ) : (
           <div className="animate-fade-in transition-all duration-700">
             {testResult && <TestResultComponent result={testResult} userInfo={userInfo} />}

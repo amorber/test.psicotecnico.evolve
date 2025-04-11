@@ -3,7 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogTrigger,
+  DialogTitle 
+} from "@/components/ui/dialog";
 import { 
   Carousel,
   CarouselContent,
@@ -31,7 +36,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
   
-  const handleThumbnailClick = (videoUrl: string) => {
+  const handleThumbnailClick = (videoUrl: string, testimonialName: string) => {
     // Extract YouTube video ID from the URL
     const videoId = videoUrl.split("/").pop();
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
@@ -84,7 +89,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           {testimonials.map((testimonial, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <Dialog open={showDialog} onOpenChange={setShowDialog}>
-                <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl)}>
+                <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl, testimonial.name)}>
                   <div className="relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.02]">
                     <img
                       src={testimonial.thumbnailUrl}
@@ -98,6 +103,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                   </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
+                  {/* Fix accessibility issue with DialogTitle */}
+                  <DialogTitle className="sr-only">Video de testimonio</DialogTitle>
                   <div className="relative w-full aspect-video">
                     <button 
                       className="absolute top-2 right-2 bg-black/60 rounded-full p-1 z-10"
@@ -111,6 +118,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                       allowFullScreen
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      title="Testimonio de estudiante"
                     ></iframe>
                   </div>
                 </DialogContent>
