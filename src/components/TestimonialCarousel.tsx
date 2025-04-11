@@ -20,9 +20,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
   const [activeVideoUrl, setActiveVideoUrl] = useState("");
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
   const autoRotateInterval = useRef<number | null>(null);
+  const isMobile = useIsMobile();
   
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -53,7 +52,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 3000); // Change to 3 seconds per testimonial
+    }, 3000); // Change slides every 3 seconds
   };
   
   useEffect(() => {
@@ -72,7 +71,15 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-4 sm:px-0">
       <h3 className="text-base mb-6 text-center">Testimonios de Estudiantes</h3>
       
-      <Carousel className="w-full relative" setActiveIndex={setActiveIndex}>
+      <Carousel
+        className="w-full relative" 
+        setActiveIndex={setActiveIndex}
+        activeIndex={activeIndex}
+        opts={{
+          loop: true,
+          duration: 700, // Slower, smoother transition
+        }}
+      >
         <CarouselContent className="h-full">
           {testimonials.map((testimonial, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">

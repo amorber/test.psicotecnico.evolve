@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -91,11 +92,11 @@ const Carousel = React.forwardRef<
     }, [setActiveIndex])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev({ duration: 700 })
+      api?.scrollPrev()
     }, [api])
 
     const scrollNext = React.useCallback(() => {
-      api?.scrollNext({ duration: 700 })
+      api?.scrollNext()
     }, [api])
 
     const handleKeyDown = React.useCallback(
@@ -113,7 +114,7 @@ const Carousel = React.forwardRef<
 
     React.useEffect(() => {
       if (api && activeIndex !== undefined && activeIndex !== currentIndex) {
-        api.scrollTo(activeIndex, true)
+        api.scrollTo(activeIndex)
       }
     }, [api, activeIndex, currentIndex])
 
