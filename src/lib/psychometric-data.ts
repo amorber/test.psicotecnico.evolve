@@ -1,3 +1,4 @@
+
 export type Answer = {
   id: string;
   text: string;
@@ -26,50 +27,96 @@ export type Testimonial = {
   thumbnailUrl: string;
 };
 
-// Sample psychometric test questions
+// Updated psychometric test questions
 export const questions: Question[] = [
   {
     id: "q1",
-    text: "¿Qué tan cómodo/a te sientes con el análisis de datos y métodos estadísticos?",
+    text: "¿Qué frase define mejor tu situación actual?",
     answers: [
-      { id: "q1a1", text: "Muy cómodo/a, los uso regularmente", value: 25 },
-      { id: "q1a2", text: "Algo cómodo/a, tengo algo de experiencia", value: 18 },
-      { id: "q1a3", text: "Neutral, entiendo los conceptos básicos", value: 12 },
-      { id: "q1a4", text: "No muy cómodo/a, experiencia limitada", value: 6 },
-      { id: "q1a5", text: "Nada cómodo/a, sin experiencia", value: 0 },
+      { id: "q1a1", text: "Estoy buscando un reto que me saque de mi zona de confort", value: 25 },
+      { id: "q1a2", text: "Quiero dejar de sentir que desperdicio mi talento", value: 25 },
+      { id: "q1a3", text: "Necesito empezar una etapa que me dé futuro", value: 25 },
+      { id: "q1a4", text: "Me motiva la idea de reinventarme desde lo digital", value: 25 },
     ],
   },
   {
     id: "q2",
-    text: "¿Cómo calificarías tus habilidades actuales en gestión de proyectos?",
+    text: "Imagina que estás frente a una puerta con un cartel que dice \"Prohibido pasar, salvo que lo cuestiones\". ¿Qué haces?",
     answers: [
-      { id: "q2a1", text: "Experto/a, lidero proyectos complejos", value: 25 },
-      { id: "q2a2", text: "Avanzado/a, puedo gestionar la mayoría de los proyectos bien", value: 18 },
-      { id: "q2a3", text: "Intermedio/a, puedo manejar proyectos básicos", value: 12 },
-      { id: "q2a4", text: "Básico/a, necesito orientación con los proyectos", value: 6 },
-      { id: "q2a5", text: "Principiante, poca o ninguna experiencia", value: 0 },
+      { id: "q2a1", text: "Entro sin pensarlo, me gusta tomar riesgos", value: 25 },
+      { id: "q2a2", text: "Me detengo a analizar si debo cruzarla, me gusta pensar antes de actuar", value: 25 },
+      { id: "q2a3", text: "Me siento motivado por el desafío, eso me impulsa", value: 25 },
+      { id: "q2a4", text: "Pregunto primero qué hay detrás, me gusta entender el contexto", value: 25 },
     ],
   },
   {
     id: "q3",
-    text: "¿Cuál es tu nivel de experiencia en planificación estratégica y toma de decisiones?",
+    text: "¿Cuál de estas palabras sientes que más te representa hoy?",
     answers: [
-      { id: "q3a1", text: "Amplia experiencia en roles estratégicos", value: 25 },
-      { id: "q3a2", text: "Buena experiencia con iniciativas estratégicas", value: 18 },
-      { id: "q3a3", text: "Alguna exposición a la planificación estratégica", value: 12 },
-      { id: "q3a4", text: "Participación limitada en decisiones estratégicas", value: 6 },
-      { id: "q3a5", text: "Sin experiencia en planificación estratégica", value: 0 },
+      { id: "q3a1", text: "Evolución (quiero crecer y aprender)", value: 25 },
+      { id: "q3a2", text: "Potencial (sé que tengo más para dar)", value: 25 },
+      { id: "q3a3", text: "Búsqueda (estoy en una etapa de exploración)", value: 25 },
+      { id: "q3a4", text: "Determinación (tengo claro lo que quiero)", value: 25 },
     ],
   },
   {
     id: "q4",
-    text: "¿Cómo describirías tus habilidades de liderazgo y gestión de equipos?",
+    text: "¿Cuál es el siguiente número de la serie? 1 – 4 – 9 – 16 – ?",
     answers: [
-      { id: "q4a1", text: "Líder fuerte, experimentado con equipos diversos", value: 25 },
-      { id: "q4a2", text: "Líder eficaz en la mayoría de situaciones", value: 18 },
-      { id: "q4a3", text: "Líder en desarrollo con alguna experiencia", value: 12 },
-      { id: "q4a4", text: "Líder emergente, experiencia limitada", value: 6 },
-      { id: "q4a5", text: "Sin experiencia de liderazgo aún", value: 0 },
+      { id: "q4a1", text: "20", value: 0 },
+      { id: "q4a2", text: "25", value: 25 },
+      { id: "q4a3", text: "30", value: 0 },
+      { id: "q4a4", text: "36", value: 0 },
+    ],
+  },
+  {
+    id: "q5",
+    text: "Tienes que aprender una nueva herramienta que aún no entiendes. ¿Cómo actúas?",
+    answers: [
+      { id: "q5a1", text: "Pruebo por mi cuenta hasta entenderlo", value: 25 },
+      { id: "q5a2", text: "Busco tutoriales o pido ayuda a alguien", value: 25 },
+      { id: "q5a3", text: "Me frustro un poco pero no abandono", value: 25 },
+      { id: "q5a4", text: "Busco otra solución más simple", value: 25 },
+    ],
+  },
+  {
+    id: "q6",
+    text: "¿Qué representa mejor el tipo de cambio que quieres hacer?",
+    answers: [
+      { id: "q6a1", text: "De lo teórico a lo práctico", value: 25 },
+      { id: "q6a2", text: "De lo repetitivo a lo creativo", value: 25 },
+      { id: "q6a3", text: "De lo cómodo a lo desafiante", value: 25 },
+      { id: "q6a4", text: "De la incertidumbre a un rumbo claro", value: 25 },
+    ],
+  },
+  {
+    id: "q7",
+    text: "¿Cuál de estas actitudes crees que necesitas reforzar para crecer profesionalmente?",
+    answers: [
+      { id: "q7a1", text: "Tolerancia al error", value: 25 },
+      { id: "q7a2", text: "Visión de largo plazo", value: 25 },
+      { id: "q7a3", text: "Mentalidad digital", value: 25 },
+      { id: "q7a4", text: "Autoconfianza", value: 25 },
+    ],
+  },
+  {
+    id: "q8",
+    text: "Si pudieras elegir un superpoder profesional hoy, ¿cuál escogerías?",
+    answers: [
+      { id: "q8a1", text: "Entender patrones complejos para anticipar soluciones", value: 25 },
+      { id: "q8a2", text: "Proteger sistemas y personas de amenazas", value: 25 },
+      { id: "q8a3", text: "Anticipar decisiones con datos", value: 25 },
+      { id: "q8a4", text: "Crear soluciones nunca vistas con tecnología", value: 25 },
+    ],
+  },
+  {
+    id: "q9",
+    text: "¿Con qué nivel te identificas ahora mismo?",
+    answers: [
+      { id: "q9a1", text: "Estoy preparado, solo necesito una dirección", value: 25 },
+      { id: "q9a2", text: "Estoy en construcción, pero tengo hambre de crecer", value: 25 },
+      { id: "q9a3", text: "Me falta claridad, pero sé que tengo lo necesario", value: 25 },
+      { id: "q9a4", text: "Tengo dudas, pero también determinación", value: 25 },
     ],
   },
 ];

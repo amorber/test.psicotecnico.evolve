@@ -60,7 +60,7 @@ const QuestionCard = ({
       <h3 className="text-base mb-6">{question.text}</h3>
       
       <div className="space-y-3">
-        {question.answers.slice(0, 3).map((answer) => (
+        {question.answers.map((answer) => (
           <div
             key={answer.id}
             className={cn(
