@@ -25,7 +25,6 @@ const QuestionCard = ({
   selectedAnswer: existingSelectedAnswer
 }: QuestionCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(existingSelectedAnswer);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     setSelectedAnswer(existingSelectedAnswer);
@@ -35,21 +34,14 @@ const QuestionCard = ({
     setSelectedAnswer(answer);
     onAnswer(question.id, answer);
     
-    // Add a smoother transition between questions with slight delay
-    setIsTransitioning(true);
+    // Add a slight delay before moving to next question
     setTimeout(() => {
       onNext();
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 300);
     }, 200);
   };
 
   return (
-    <div className={cn(
-      "animate-fade-in notion-card w-full max-w-2xl mx-auto transition-all duration-1000 ease-in-out",
-      isTransitioning ? "opacity-50 translate-x-5" : "opacity-100 translate-x-0"
-    )}>
+    <div className="notion-card w-full max-w-2xl mx-auto">
       <div className="flex justify-between items-center mb-6">
         <span className="text-xs text-notion-mediumGray">
           Pregunta {currentIndex + 1} de {totalQuestions}
@@ -88,7 +80,7 @@ const QuestionCard = ({
       <div className="mt-8 flex justify-between">
         <Button 
           onClick={onPrevious}
-          disabled={currentIndex === 0 || isTransitioning}
+          disabled={currentIndex === 0}
           variant="outline"
           className="notion-button text-xs px-3 py-1 h-8 transition-all duration-300"
           size="sm"
@@ -99,7 +91,7 @@ const QuestionCard = ({
         
         <Button 
           onClick={onNext}
-          disabled={!selectedAnswer || currentIndex >= totalQuestions - 1 || isTransitioning}
+          disabled={!selectedAnswer || currentIndex >= totalQuestions - 1}
           className="notion-button text-xs px-3 py-1 h-8 transition-all duration-300"
           size="sm"
         >

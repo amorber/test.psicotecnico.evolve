@@ -58,7 +58,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 5000); // Change slides every 5 seconds (increased from 3s to 5s)
+    }, 8000); // Increased to 8 seconds for longer display of central image
   };
   
   useEffect(() => {
@@ -99,7 +99,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         activeIndex={activeIndex}
         opts={{
           loop: true,
-          duration: 700, // Slower, smoother transition
+          duration: 1000, // Slower, smoother transition
         }}
       >
         <CarouselContent className="h-full">
@@ -108,7 +108,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
               <Dialog open={showDialog} onOpenChange={setShowDialog}>
                 <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl, testimonial.name)}>
                   <div 
-                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.03] ${getItemClassName(index)}`}
+                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.02] ${getItemClassName(index)}`}
                   >
                     <img
                       src={testimonial.thumbnailUrl}
@@ -121,7 +121,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black overflow-hidden">
+                <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black/90 backdrop-blur-sm overflow-hidden rounded-xl">
                   {/* Fix accessibility issue with DialogTitle */}
                   <DialogTitle className="sr-only">Video de testimonio</DialogTitle>
                   <div className="relative w-full aspect-video">
@@ -135,6 +135,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                       src={activeVideoUrl}
                       className="w-full h-full"
                       allowFullScreen
+                      loading="eager"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       title="Testimonio de estudiante"
