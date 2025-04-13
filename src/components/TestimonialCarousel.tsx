@@ -33,37 +33,37 @@ const defaultTestimonials: Testimonial[] = [
   {
     name: "Carlos",
     role: "Alumno del Máster en Ciberseguridad & IA",
-    thumbnailUrl: "/Experiencia1-card-1.jpg",
+    thumbnailUrl: "/lovable-uploads/3e9e4c80-ea08-47b6-b8c3-5c2870a4aed7.png",
     videoUrl: "https://youtu.be/D9f5hKml4Qg"
   },
   {
     name: "Noelia",
     role: "Alumna del Máster en Desarrollo Web Full Stack & IA",
-    thumbnailUrl: "/Experiencia4-card-1.jpg",
+    thumbnailUrl: "/lovable-uploads/00558a74-beae-4730-9f4c-6aade09128d8.png",
     videoUrl: "https://youtu.be/MgwTHO06f1A"
   },
   {
     name: "Víctor Rico",
     role: "Alumno del Máster en Data Science & IA",
-    thumbnailUrl: "/Experiencia6-card.jpg",
+    thumbnailUrl: "/lovable-uploads/03ef3099-c01a-4f30-ba70-ff825c04da03.png",
     videoUrl: "https://youtu.be/6kzffPuLCUg"
   },
   {
     name: "Alberto",
     role: "Alumno del Máster en Inteligencia Artificial",
-    thumbnailUrl: "/Experiencia7-card-1.jpg",
+    thumbnailUrl: "/lovable-uploads/c0b78cb7-3fe5-4a7e-860c-f1da8103f415.png",
     videoUrl: "https://youtu.be/JN2Kp5Z3fQc"
   },
   {
     name: "Alberto García",
     role: "Alumno del Máster en Inteligencia Artificial",
-    thumbnailUrl: "/Experiencia8-card-1.jpg",
+    thumbnailUrl: "/lovable-uploads/912e8f56-f5d9-4682-822c-7f0da4b1f0bd.png",
     videoUrl: "https://youtu.be/Yyw3fs355ik"
   },
   {
     name: "Mario Fernández",
     role: "Alumno del Máster en Ciberseguridad & IA",
-    thumbnailUrl: "/Experiencia9-card.jpg",
+    thumbnailUrl: "/lovable-uploads/dc673ab1-a2ec-412e-b662-ab96aeb0d0f5.png",
     videoUrl: "https://youtu.be/RY_dzC2AZGw"
   }
 ];
@@ -167,7 +167,12 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
                       <img
                         src={testimonial.thumbnailUrl}
                         alt={`Testimonio de ${testimonial.name}`}
-                        className="w-full aspect-[9/16] object-cover rounded-xl"
+                        className={`w-full aspect-[9/16] object-cover rounded-xl transition-opacity duration-700 ease-in-out ${
+                          index === activeIndex ? "opacity-100" : "opacity-0"
+                        }`}
+                        style={{
+                          transitionDelay: index === activeIndex ? "150ms" : "0ms"
+                        }}
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
                         <h4 className="text-white text-base font-medium">{testimonial.name}</h4>
@@ -264,4 +269,3 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
 };
 
 export default TestimonialCarousel;
-
