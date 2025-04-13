@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -86,8 +85,8 @@ const Carousel = React.forwardRef<
         setActiveIndex(currentIndex)
       }
       
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
+      setCanScrollPrev(true)
+      setCanScrollNext(true)
     }, [setActiveIndex])
 
     const scrollPrev = React.useCallback(() => {

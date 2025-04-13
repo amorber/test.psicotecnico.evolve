@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 
-// Definición actualizada del tipo Testimonial
+// Testimonial type definition
 export interface Testimonial {
   name: string;
   role: string;
@@ -107,9 +107,10 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
       window.clearInterval(autoRotateInterval.current);
     }
     
+    // Increased from 5000 to 8000 ms (8 seconds) for better viewing time
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 5000); // 5 segundos para cada testimonio
+    }, 8000);
   };
   
   useEffect(() => {
@@ -151,7 +152,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
           activeIndex={activeIndex}
           opts={{
             loop: true,
-            duration: 500, // Transición más rápida
+            duration: 500, // Fast transition for smooth experience
           }}
         >
           <CarouselContent className="h-full">
@@ -160,7 +161,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
                 <Dialog open={showDialog} onOpenChange={setShowDialog}>
                   <DialogTrigger asChild>
                     <div 
-                      className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-500 h-full mx-2 transform hover:scale-105 ${getItemClassName(index)}`}
+                      className={`relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl cursor-pointer transition-all duration-700 h-full mx-2 transform hover:scale-[1.02] ${getItemClassName(index)}`}
                       onClick={() => handleThumbnailClick(testimonial.videoUrl)}
                     >
                       <img
@@ -174,8 +175,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
                       </div>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black/90 backdrop-blur-sm overflow-hidden rounded-xl">
-                    {/* Fix accessibility issue with DialogTitle */}
+                  <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black/80 backdrop-blur-md overflow-hidden rounded-xl border-0">
                     <DialogTitle className="sr-only">Video testimonio de {testimonial.name}</DialogTitle>
                     <div className="relative w-full aspect-video">
                       <button 
@@ -210,7 +210,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
                 handlePrev();
                 startAutoRotation();
               }}
-              className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-notion focus:outline-none transform hover:scale-105 transition-transform duration-300 h-8 w-8"
+              className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-md focus:outline-none transform hover:scale-105 transition-transform duration-300 h-8 w-8"
             />
             <CarouselNext 
               onClick={(e) => {
@@ -218,7 +218,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
                 handleNext();
                 startAutoRotation();
               }}
-              className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-notion focus:outline-none transform hover:scale-105 transition-transform duration-300 h-8 w-8"
+              className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-md focus:outline-none transform hover:scale-105 transition-transform duration-300 h-8 w-8"
             />
           </div>
           
@@ -252,7 +252,7 @@ const TestimonialCarousel = ({ testimonials = defaultTestimonials }: Testimonial
           <Button 
             variant="outline" 
             size="sm" 
-            className="bg-white border-notion-lightGray hover:bg-notion-accent text-notion-mediumGray hover:text-notion-text transition-all gap-1 h-8 shadow-notion"
+            className="bg-white border-notion-lightGray hover:bg-notion-accent text-notion-mediumGray hover:text-notion-text transition-all gap-1 h-8 shadow-md"
           >
             Ver más testimonios
             <ExternalLink size={12} />
