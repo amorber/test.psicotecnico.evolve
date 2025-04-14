@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -203,5 +204,22 @@ button, input, select, textarea {
   
   h1, h2, h3, h4, h5 {
     font-size: calc(1rem + 2px);
+  }
+  
+  /* Reduce vertical spacing in mobile view */
+  .flex.flex-col.space-y-8 {
+    @apply space-y-4;
+  }
+  
+  .py-6, .py-8, .py-10 {
+    @apply py-3;
+  }
+  
+  .mt-8, .mb-8 {
+    @apply mt-4 mb-4;
+  }
+  
+  .min-h-screen {
+    @apply py-4;
   }
 }
