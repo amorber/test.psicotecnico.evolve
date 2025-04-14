@@ -91,7 +91,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         activeIndex={activeIndex}
         opts={{
           loop: true,
-          duration: 500,
+          duration: 300,
         }}
       >
         <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0 space-x-3' : ''}`}>
