@@ -54,9 +54,9 @@ const PsychometricTest = () => {
   return (
     <div className="flex flex-col space-y-8 py-6 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
       <div className="text-center mb-6">
-        <h1 className="text-lg sm:text-xl font-medium mb-2">Evaluación psicotécnica Evolve</h1>
+        <h1 className="text-lg sm:text-xl font-medium mb-2">Test psicotécnico Evolve</h1>
         <p className="text-sm text-notion-mediumGray max-w-md mx-auto sm:text-sm text-xs">
-          Realiza esta breve evaluación psicotécnica para ver cómo se alinea nuestro Máster con tus habilidades y experiencia actuales.
+          Realiza este breve test psicotécnico y descubre cómo se alinean tus habilidades y tu perfil con los desafíos reales de nuestro Máster.
         </p>
       </div>
 

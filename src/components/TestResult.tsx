@@ -13,7 +13,7 @@ const TestResult = ({ result, userInfo }: TestResultProps) => {
   return (
     <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
       <div className="mb-6 text-center">        
-        <div className="text-4xl font-bold mb-4 text-notion-text">
+        <div className="text-[calc(2rem-2px)] font-bold mb-4 text-notion-text">
           87%
         </div>
         
@@ -22,11 +22,6 @@ const TestResult = ({ result, userInfo }: TestResultProps) => {
             className="h-full bg-notion-text transition-all duration-1000 ease-out"
             style={{ width: `87%` }} 
           />
-        </div>
-        <div className="flex justify-between text-xs text-notion-mediumGray">
-          <span>0%</span>
-          <span>50%</span>
-          <span>100%</span>
         </div>
       </div>
       

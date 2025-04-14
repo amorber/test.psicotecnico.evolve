@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
@@ -38,13 +37,11 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   };
   
   const handleThumbnailClick = (videoUrl: string, testimonialName: string) => {
-    // Extract YouTube video ID from the URL
     const videoId = videoUrl.split("/").pop();
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
     setActiveVideoUrl(embedUrl);
     setShowDialog(true);
     
-    // Clear auto-rotation on user interaction
     if (autoRotateInterval.current) {
       window.clearInterval(autoRotateInterval.current);
       autoRotateInterval.current = null;
@@ -58,14 +55,12 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 8000); // Increased to 8 seconds for longer display of central image
+    }, 8000);
   };
   
   useEffect(() => {
-    // Start auto-rotation when component mounts
     startAutoRotation();
     
-    // Clean up interval on unmount
     return () => {
       if (autoRotateInterval.current) {
         window.clearInterval(autoRotateInterval.current);
@@ -74,18 +69,15 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   }, []);
 
   const getItemClassName = (index: number) => {
-    // Calculate the distance from the active slide (considering circular nature)
     const distance = Math.min(
       Math.abs(index - activeIndex),
       Math.abs(index - activeIndex - testimonials.length),
       Math.abs(index - activeIndex + testimonials.length)
     );
     
-    // Center item
     if (distance === 0) {
       return "scale-100 opacity-100 z-10";
     }
-    // Side items
     return "scale-[0.85] opacity-60 z-0";
   };
 
@@ -99,7 +91,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         activeIndex={activeIndex}
         opts={{
           loop: true,
-          duration: 1000, // Slower, smoother transition
+          duration: 1000,
         }}
       >
         <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0' : ''}`}>
@@ -116,16 +108,15 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className={`w-full ${isMobile ? 'aspect-[9/13] h-[320px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
+                      className={`w-full ${isMobile ? 'aspect-[9/13] h-[350px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
-                      <h4 className={`text-white font-medium ${isMobile ? 'text-[calc(0.875rem+2px)]' : 'text-base sm:text-base'}`}>{testimonial.name}</h4>
-                      <p className={`text-white/80 ${isMobile ? 'text-[calc(0.75rem+2px)]' : 'text-sm sm:text-sm'}`}>{testimonial.role}</p>
+                      <h4 className={`text-white font-medium ${isMobile ? 'text-[calc(0.875rem+4px)]' : 'text-base sm:text-base'}`}>{testimonial.name}</h4>
+                      <p className={`text-white/80 ${isMobile ? 'text-[calc(0.75rem+4px)]' : 'text-sm sm:text-sm'}`}>{testimonial.role}</p>
                     </div>
                   </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[80vw] max-h-[90vh] p-0 bg-black/90 backdrop-blur-sm overflow-hidden rounded-xl">
-                  {/* Fix accessibility issue with DialogTitle */}
                   <DialogTitle className="sr-only">Video de testimonio</DialogTitle>
                   <div className="relative w-full aspect-video">
                     <button 
@@ -150,7 +141,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           ))}
         </CarouselContent>
         
-        {/* Custom navigation controls */}
         <div className="hidden md:block">
           <CarouselPrevious 
             onClick={(e) => {
@@ -170,7 +160,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           />
         </div>
         
-        {/* Dots indicator for all devices */}
         <div className="flex justify-center mt-4 space-x-2">
           {testimonials.map((_, index) => (
             <button
@@ -188,7 +177,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         </div>
       </Carousel>
       
-      {/* "Ver más testimonios" button with added top padding */}
       <div className="flex justify-center mt-8 pt-2">
         <a 
           href="https://evolveacademy.es/experiencias/#historias" 
