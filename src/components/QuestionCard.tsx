@@ -54,7 +54,7 @@ const QuestionCard = ({
         </div>
       </div>
       
-      <h3 className="text-base mb-6 sm:text-base text-sm">{question.text}</h3>
+      <h3 className="text-sm mb-6">{question.text}</h3>
       
       <div className="space-y-3">
         {question.answers.map((answer) => (
@@ -72,7 +72,7 @@ const QuestionCard = ({
                 <div className="w-3 h-3 bg-notion-text rounded-full" />
               )}
             </div>
-            <span className="text-sm sm:text-sm text-xs">{answer.text}</span>
+            <span className="text-xs">{answer.text}</span>
           </div>
         ))}
       </div>

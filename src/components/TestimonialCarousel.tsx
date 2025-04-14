@@ -91,7 +91,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
 
   return (
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-0">
-      <h3 className="text-base mb-6 text-center sm:text-base text-sm">Testimonios de Estudiantes</h3>
+      <h3 className="text-xs mb-6 text-center">Testimonios de Estudiantes</h3>
       
       <Carousel
         className="w-full relative" 
@@ -116,11 +116,11 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className="w-full aspect-[9/16] object-cover rounded-xl"
+                      className="w-full aspect-[9/16] object-cover rounded-xl max-w-[150px] mx-auto"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
-                      <h4 className="text-white text-base font-medium sm:text-base text-sm">{testimonial.name}</h4>
-                      <p className="text-white/80 text-sm sm:text-sm text-xs">{testimonial.role}</p>
+                      <h4 className="text-white text-xs font-medium">{testimonial.name}</h4>
+                      <p className="text-white/80 text-xs">{testimonial.role}</p>
                     </div>
                   </div>
                 </DialogTrigger>
