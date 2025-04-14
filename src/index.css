@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -154,7 +155,7 @@ button, input, select, textarea {
 /* Additional responsive adjustments */
 @media (max-width: 768px) {
   .notion-card {
-    @apply mx-auto text-center;
+    @apply mx-2;
   }
   
   h1 {
@@ -180,21 +181,16 @@ button, input, select, textarea {
     padding: 0;
     margin: 0;
   }
-  
-  /* Ensure all content is centered */
-  .flex, .flex-col, div, p, h1, h2, h3, h4, h5, h6 {
-    @apply text-center mx-auto;
-  }
 }
 
 /* For improved mobile experience */
 @media (max-width: 480px) {
   .notion-input-option {
-    @apply p-2 gap-2 justify-center;
+    @apply p-2 gap-2;
   }
   
   .notion-button {
-    @apply text-xs px-3 mx-auto;
+    @apply text-xs px-3;
   }
   
   /* Text size adjustments for mobile - increased by 2px */
@@ -212,27 +208,18 @@ button, input, select, textarea {
   
   /* Reduce vertical spacing in mobile view */
   .flex.flex-col.space-y-8 {
-    @apply space-y-3;
+    @apply space-y-4;
   }
   
   .py-6, .py-8, .py-10 {
-    @apply py-2;
+    @apply py-3;
   }
   
   .mt-8, .mb-8 {
-    @apply mt-3 mb-3;
+    @apply mt-4 mb-4;
   }
   
   .min-h-screen {
-    @apply py-2;
-  }
-  
-  /* Center everything on mobile */
-  body, #root, .min-h-screen, .flex, .notion-card {
-    @apply text-center items-center justify-center;
-  }
-  
-  form, .form-group, .notion-input-option {
-    @apply flex flex-col items-center justify-center text-center;
+    @apply py-4;
   }
 }

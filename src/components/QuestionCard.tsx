@@ -72,7 +72,7 @@ const QuestionCard = ({
                 <div className="w-3 h-3 bg-notion-text rounded-full" />
               )}
             </div>
-            <span className="text-[calc(0.75rem-1px)] sm:text-[calc(0.75rem-1px)] text-[calc(0.75rem)]">{answer.text}</span>
+            <span className="text-[calc(0.75rem-1px)] sm:text-[calc(0.75rem-1px)] text-[calc(0.75rem-1px)]">{answer.text}</span>
           </div>
         ))}
       </div>
