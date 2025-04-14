@@ -13,7 +13,7 @@ const TestResult = ({ result, userInfo }: TestResultProps) => {
   return (
     <div className="animate-fade-in notion-card w-full max-w-2xl mx-auto">
       <div className="mb-6 text-center">        
-        <div className="text-[calc(2rem-2px)] font-bold mb-4 text-notion-text">
+        <div className="text-[calc(2rem-4px)] font-bold mb-4 text-notion-text">
           87%
         </div>
         
