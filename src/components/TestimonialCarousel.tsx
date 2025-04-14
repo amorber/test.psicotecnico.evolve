@@ -54,9 +54,10 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
       window.clearInterval(autoRotateInterval.current);
     }
     
+    // Increased from 8000ms to 10000ms (2 seconds more)
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
-    }, 8000);
+    }, 10000);
   };
   
   useEffect(() => {
@@ -77,9 +78,11 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     );
     
     if (distance === 0) {
-      return "scale-100 opacity-100 z-10";
+      // Reduced zoom effect from scale-100 to scale-[0.98]
+      return "scale-[0.98] opacity-100 z-10";
     }
-    return "scale-[0.85] opacity-60 z-0";
+    // Reduced zoom effect from scale-[0.85] to scale-[0.9]
+    return "scale-[0.9] opacity-60 z-0";
   };
 
   return (
@@ -95,21 +98,21 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           duration: 1000,
         }}
       >
-        <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0' : ''}`}>
+        <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0 space-x-3' : ''}`}>
           {testimonials.map((testimonial, index) => (
             <CarouselItem 
               key={index} 
-              className={`${isMobile ? 'basis-full pl-0' : 'md:basis-1/2 lg:basis-1/3'}`}
+              className={`${isMobile ? 'basis-[85%] pl-0' : 'md:basis-1/2 lg:basis-1/3'}`}
             >
               <Dialog open={showDialog} onOpenChange={setShowDialog}>
                 <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl, testimonial.name)}>
                   <div 
-                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-0 transform hover:scale-[1.02] ${getItemClassName(index)}`}
+                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-0 transform hover:scale-[1.01] ${getItemClassName(index)}`}
                   >
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className={`w-full ${isMobile ? 'aspect-[9/13] h-[400px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
+                      className={`w-full ${isMobile ? 'aspect-[9/16] h-[420px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
                       <h4 className={`text-white font-medium ${isMobile ? 'text-[calc(0.875rem+4px)]' : 'text-base sm:text-base'}`}>{testimonial.name}</h4>
