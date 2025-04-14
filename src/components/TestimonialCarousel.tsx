@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
@@ -54,7 +53,6 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
       window.clearInterval(autoRotateInterval.current);
     }
     
-    // Increased from 8000ms to 10000ms (2 seconds more)
     autoRotateInterval.current = window.setInterval(() => {
       handleNext();
     }, 10000);
@@ -78,10 +76,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
     );
     
     if (distance === 0) {
-      // Reduced zoom effect from scale-100 to scale-[0.98]
       return "scale-[0.98] opacity-100 z-10";
     }
-    // Reduced zoom effect from scale-[0.85] to scale-[0.9]
     return "scale-[0.9] opacity-60 z-0";
   };
 
@@ -95,7 +91,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
         activeIndex={activeIndex}
         opts={{
           loop: true,
-          duration: 1000,
+          duration: 500,
         }}
       >
         <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0 space-x-3' : ''}`}>
