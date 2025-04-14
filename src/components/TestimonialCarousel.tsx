@@ -116,10 +116,10 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className="w-full aspect-[9/16] object-cover rounded-xl"
+                      className={`w-full aspect-[9/16] object-cover rounded-xl ${isMobile ? 'max-w-[66%] mx-auto' : ''}`}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
-                      <h4 className="text-white text-base font-medium sm:text-base text-sm">{testimonial.name}</h4>
+                      <h4 className="text-white text-base font-medium sm:text-base text-xs">{testimonial.name}</h4>
                       <p className="text-white/80 text-sm sm:text-sm text-xs">{testimonial.role}</p>
                     </div>
                   </div>

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -193,12 +192,16 @@ button, input, select, textarea {
     @apply text-xs px-3;
   }
   
-  /* Text size adjustments for mobile */
+  /* Text size adjustments for mobile - increased by 2px */
   .text-xs, .text-sm {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem + 2px);
   }
   
-  input, select, textarea, label {
-    font-size: 0.875rem;
+  input, select, textarea, label, p, span, button, div {
+    font-size: calc(0.875rem + 2px);
+  }
+  
+  h1, h2, h3, h4, h5 {
+    font-size: calc(1rem + 2px);
   }
 }
