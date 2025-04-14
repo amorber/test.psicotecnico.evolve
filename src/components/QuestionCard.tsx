@@ -63,7 +63,7 @@ const QuestionCard = ({
             className={cn(
               "notion-input-option",
               selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/90' : '',
-              "transition-all duration-300 ease-in-out"
+              "transition-colors duration-300 ease-in-out" // Changed from transition-all to just transition-colors
             )}
             onClick={() => handleSelectAnswer(answer)}
           >

@@ -32,7 +32,7 @@ const TestResult = ({ result, userInfo }: TestResultProps) => {
       
       <div className="mb-6">
         <p className="text-sm mb-3 text-center">
-          Tu perfil encaja al 87% con nuestro máster: tienes la base perfecta y este programa será el impulso que te llevará al siguiente nivel profesional.
+          Tu perfil encaja al 87% con nuestro máster: tienes el impulso, la mentalidad y el momento.
         </p>
       </div>
     </div>
