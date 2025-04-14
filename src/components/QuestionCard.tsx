@@ -54,7 +54,7 @@ const QuestionCard = ({
         </div>
       </div>
       
-      <h3 className="text-base mb-6">{question.text}</h3>
+      <h3 className="text-base mb-6 sm:text-base text-sm">{question.text}</h3>
       
       <div className="space-y-3">
         {question.answers.map((answer) => (
@@ -63,7 +63,7 @@ const QuestionCard = ({
             className={cn(
               "notion-input-option",
               selectedAnswer?.id === answer.id ? 'selected bg-notion-accent/90' : '',
-              "transition-colors duration-300 ease-in-out" // Changed from transition-all to just transition-colors
+              "transition-colors duration-300 ease-in-out" // Using only color transition to prevent layout shifts
             )}
             onClick={() => handleSelectAnswer(answer)}
           >
@@ -72,7 +72,7 @@ const QuestionCard = ({
                 <div className="w-3 h-3 bg-notion-text rounded-full" />
               )}
             </div>
-            <span className="text-sm">{answer.text}</span>
+            <span className="text-sm sm:text-sm text-xs">{answer.text}</span>
           </div>
         ))}
       </div>

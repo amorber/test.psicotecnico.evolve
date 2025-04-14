@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -176,6 +177,7 @@ const CarouselContent = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel()
+  const isMobile = useIsMobile()
 
   return (
     <div ref={carouselRef} className="overflow-hidden">
@@ -183,7 +185,7 @@ const CarouselContent = React.forwardRef<
         ref={ref}
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? (isMobile ? "" : "-ml-4") : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -198,6 +200,7 @@ const CarouselItem = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const { orientation } = useCarousel()
+  const isMobile = useIsMobile()
 
   return (
     <div
@@ -206,7 +209,7 @@ const CarouselItem = React.forwardRef<
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? (isMobile ? "" : "pl-4") : "pt-4",
         className
       )}
       {...props}

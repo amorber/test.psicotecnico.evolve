@@ -90,8 +90,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   };
 
   return (
-    <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-4 sm:px-0">
-      <h3 className="text-base mb-6 text-center">Testimonios de Estudiantes</h3>
+    <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-0">
+      <h3 className="text-base mb-6 text-center sm:text-base text-sm">Testimonios de Estudiantes</h3>
       
       <Carousel
         className="w-full relative" 
@@ -102,13 +102,16 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           duration: 1000, // Slower, smoother transition
         }}
       >
-        <CarouselContent className="h-full">
+        <CarouselContent className={`h-full ${isMobile ? '-ml-0 pl-0' : ''}`}>
           {testimonials.map((testimonial, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem 
+              key={index} 
+              className={`${isMobile ? 'basis-full pl-0' : 'md:basis-1/2 lg:basis-1/3'}`}
+            >
               <Dialog open={showDialog} onOpenChange={setShowDialog}>
                 <DialogTrigger asChild onClick={() => handleThumbnailClick(testimonial.videoUrl, testimonial.name)}>
                   <div 
-                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-1 transform hover:scale-[1.02] ${getItemClassName(index)}`}
+                    className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-0 transform hover:scale-[1.02] ${getItemClassName(index)}`}
                   >
                     <img
                       src={testimonial.thumbnailUrl}
@@ -116,8 +119,8 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                       className="w-full aspect-[9/16] object-cover rounded-xl"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
-                      <h4 className="text-white text-base font-medium">{testimonial.name}</h4>
-                      <p className="text-white/80 text-sm">{testimonial.role}</p>
+                      <h4 className="text-white text-base font-medium sm:text-base text-sm">{testimonial.name}</h4>
+                      <p className="text-white/80 text-sm sm:text-sm text-xs">{testimonial.role}</p>
                     </div>
                   </div>
                 </DialogTrigger>
@@ -196,7 +199,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
           <Button 
             variant="outline" 
             size="sm" 
-            className="bg-white border-notion-lightGray hover:bg-notion-accent text-notion-mediumGray hover:text-notion-text transition-all gap-1 h-8 shadow-notion"
+            className="bg-white border-notion-lightGray hover:bg-notion-accent text-notion-mediumGray hover:text-notion-text transition-all gap-1 h-8 shadow-notion text-xs"
           >
             Ver más testimonios
             <ExternalLink size={12} />

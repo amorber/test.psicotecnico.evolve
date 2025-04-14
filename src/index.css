@@ -77,6 +77,14 @@
     .notion-card {
       @apply p-4;
     }
+    
+    .notion-input-option {
+      @apply p-2 gap-2;
+    }
+    
+    input, select, textarea {
+      @apply text-sm;
+    }
   }
 }
 
@@ -161,6 +169,18 @@ button, input, select, textarea {
   h3 {
     @apply text-base;
   }
+  
+  /* Carousel specific mobile styling */
+  .carousel-container {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .carousel-item-mobile {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 /* For improved mobile experience */
@@ -171,5 +191,14 @@ button, input, select, textarea {
   
   .notion-button {
     @apply text-xs px-3;
+  }
+  
+  /* Text size adjustments for mobile */
+  .text-xs, .text-sm {
+    font-size: 0.75rem;
+  }
+  
+  input, select, textarea, label {
+    font-size: 0.875rem;
   }
 }
