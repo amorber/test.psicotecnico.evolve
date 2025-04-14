@@ -54,8 +54,8 @@ const PsychometricTest = () => {
   return (
     <div className="flex flex-col space-y-8 py-6 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
       <div className="text-center mb-6">
-        <h1 className="text-xs sm:text-lg font-medium mb-2">Evaluación psicotécnica Evolve</h1>
-        <p className="text-xs text-notion-mediumGray max-w-md mx-auto">
+        <h1 className="text-lg sm:text-xl font-medium mb-2">Evaluación psicotécnica Evolve</h1>
+        <p className="text-sm text-notion-mediumGray max-w-md mx-auto sm:text-sm text-xs">
           Realiza esta breve evaluación psicotécnica para ver cómo se alinea nuestro Máster con tus habilidades y experiencia actuales.
         </p>
       </div>
@@ -65,24 +65,24 @@ const PsychometricTest = () => {
           <div className="notion-card w-full max-w-md mx-auto">
             <form onSubmit={handleUserInfoSubmit} className="space-y-4">
               <div>
-                <label htmlFor="fullName" className="block text-xs font-medium mb-1">Nombre completo</label>
+                <label htmlFor="fullName" className="block text-sm font-medium mb-1 sm:text-sm text-xs">Nombre completo</label>
                 <Input 
                   id="fullName" 
                   value={userInfo.fullName} 
                   onChange={(e) => setUserInfo(prev => ({ ...prev, fullName: e.target.value }))} 
                   required 
-                  className="w-full text-xs"
+                  className="w-full text-sm sm:text-sm text-xs"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs font-medium mb-1">Correo electrónico</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-1 sm:text-sm text-xs">Correo electrónico</label>
                 <Input 
                   id="email" 
                   type="email" 
                   value={userInfo.email} 
                   onChange={(e) => setUserInfo(prev => ({ ...prev, email: e.target.value }))} 
                   required 
-                  className="w-full text-xs"
+                  className="w-full text-sm sm:text-sm text-xs"
                 />
               </div>
               <Button type="submit" className="w-full notion-button text-xs">
