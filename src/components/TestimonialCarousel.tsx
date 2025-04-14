@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
@@ -83,7 +84,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
 
   return (
     <div className="animate-fade-in mt-8 w-full max-w-3xl mx-auto px-0">
-      <h3 className="text-base mb-6 text-center sm:text-base text-sm">Testimonios de Estudiantes</h3>
+      <h3 className="text-base mb-6 text-center sm:text-base text-[calc(0.875rem+2px)]">Testimonios de Estudiantes</h3>
       
       <Carousel
         className="w-full relative" 
@@ -108,7 +109,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     <img
                       src={testimonial.thumbnailUrl}
                       alt={testimonial.name}
-                      className={`w-full ${isMobile ? 'aspect-[9/13] h-[350px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
+                      className={`w-full ${isMobile ? 'aspect-[9/13] h-[400px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
                       <h4 className={`text-white font-medium ${isMobile ? 'text-[calc(0.875rem+4px)]' : 'text-base sm:text-base'}`}>{testimonial.name}</h4>
