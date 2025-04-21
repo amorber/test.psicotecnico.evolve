@@ -152,7 +152,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Ciberseguridad & IA",
     testimonial: "El enfoque analítico del programa revolucionó mi proceso de toma de decisiones.",
     videoUrl: "https://youtu.be/RY_dzC2AZGw",
-    thumbnailUrl: "/lovable-uploads/dc673ab1-a2ec-412e-b662-ab96aeb0d0f5.png",
+    thumbnailUrl: "/lovable-uploads/03ef3099-c01a-4f30-ba70-ff825c04da03.png",
   },
   {
     id: "t5",
@@ -168,7 +168,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Data Science & IA",
     testimonial: "Las herramientas y conocimientos adquiridos me han abierto nuevas oportunidades laborales.",
     videoUrl: "https://youtu.be/6kzffPuLCUg",
-    thumbnailUrl: "/lovable-uploads/03ef3099-c01a-4f30-ba70-ff825c04da03.png",
+    thumbnailUrl: "/lovable-uploads/dc673ab1-a2ec-412e-b662-ab96aeb0d0f5.png",
   },
 ];
 
