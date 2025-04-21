@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Question, Answer, TestResult, questions, testimonials, calculateTestResult } from "@/lib/psychometric-data";
 import QuestionCard from "./QuestionCard";
@@ -67,7 +68,7 @@ const PsychometricTest = () => {
       <div className="text-center mb-6">
         <h1 className="text-lg sm:text-xl font-medium mb-2">Test psicotécnico Evolve</h1>
         <p className="text-sm text-notion-mediumGray max-w-md mx-auto sm:text-sm text-xs">
-          Realiza este breve test psicotécnico y descubre cómo se alinean tus habilidades y tu perfil con los desafíos reales de nuestro Máster.
+          Realiza este test psicotécnico y descubre cómo se alinean tus habilidades y tu perfil con los desafíos reales de nuestro Máster.
         </p>
       </div>
 
