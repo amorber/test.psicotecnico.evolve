@@ -1,4 +1,3 @@
-
 export type Answer = {
   id: string;
   text: string;
@@ -129,7 +128,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Ciberseguridad & IA",
     testimonial: "Este programa transformó mi carrera. Adquirí habilidades prácticas que uso a diario.",
     videoUrl: "https://youtu.be/D9f5hKml4Qg",
-    thumbnailUrl: "/lovable-uploads/3e9e4c80-ea08-47b6-b8c3-5c2870a4aed7.png",
+    thumbnailUrl: "/lovable-uploads/c0b78cb7-3fe5-4a7e-860c-f1da8103f415.png",
   },
   {
     id: "t2",
@@ -145,7 +144,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Inteligencia Artificial",
     testimonial: "Obtuve una ventaja competitiva en mi campo. Vale cada minuto invertido.",
     videoUrl: "https://youtu.be/JN2Kp5Z3fQc",
-    thumbnailUrl: "/lovable-uploads/c0b78cb7-3fe5-4a7e-860c-f1da8103f415.png",
+    thumbnailUrl: "/lovable-uploads/3e9e4c80-ea08-47b6-b8c3-5c2870a4aed7.png",
   },
   {
     id: "t4",
