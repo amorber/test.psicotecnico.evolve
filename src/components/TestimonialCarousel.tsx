@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/lib/psychometric-data";
 import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
@@ -27,6 +28,9 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
   const [activeVideoUrl, setActiveVideoUrl] = useState("");
   const autoRotateInterval = useRef<number | null>(null);
   const isMobile = useIsMobile();
+  
+  // Get the base URL for assets
+  const baseUrl = import.meta.env.BASE_URL || '/';
   
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -106,7 +110,7 @@ const TestimonialCarousel = ({ testimonials }: TestimonialCarouselProps) => {
                     className={`relative rounded-xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-700 h-full mx-0 transform hover:scale-[1.01] ${getItemClassName(index)}`}
                   >
                     <img
-                      src={testimonial.thumbnailUrl}
+                      src={testimonial.thumbnailUrl.startsWith('/') ? `${baseUrl}${testimonial.thumbnailUrl.slice(1)}` : testimonial.thumbnailUrl}
                       alt={testimonial.name}
                       className={`w-full ${isMobile ? 'aspect-[9/16] h-[420px] object-cover object-center mx-auto' : 'aspect-[9/16] object-cover'} rounded-xl`}
                     />

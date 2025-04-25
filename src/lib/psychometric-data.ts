@@ -1,3 +1,4 @@
+
 export type Answer = {
   id: string;
   text: string;
@@ -120,7 +121,7 @@ export const questions: Question[] = [
   },
 ];
 
-// Updated testimonial data with the new images and information
+// Updated testimonial data with corrected URLs to use BASE_URL when deployed
 export const testimonials: Testimonial[] = [
   {
     id: "t1",
@@ -128,7 +129,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Ciberseguridad & IA",
     testimonial: "Este programa transformó mi carrera. Adquirí habilidades prácticas que uso a diario.",
     videoUrl: "https://youtu.be/D9f5hKml4Qg",
-    thumbnailUrl: "/lovable-uploads/c0b78cb7-3fe5-4a7e-860c-f1da8103f415.png",
+    thumbnailUrl: "lovable-uploads/c0b78cb7-3fe5-4a7e-860c-f1da8103f415.png",
   },
   {
     id: "t2",
@@ -136,7 +137,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumna del Máster en Desarrollo Web Full Stack & IA",
     testimonial: "Los marcos estratégicos enseñados aquí me ayudaron a liderar mi equipo hacia el éxito.",
     videoUrl: "https://youtu.be/MgwTHO06f1A",
-    thumbnailUrl: "/lovable-uploads/00558a74-beae-4730-9f4c-6aade09128d8.png",
+    thumbnailUrl: "lovable-uploads/00558a74-beae-4730-9f4c-6aade09128d8.png",
   },
   {
     id: "t3",
@@ -144,7 +145,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Inteligencia Artificial",
     testimonial: "Obtuve una ventaja competitiva en mi campo. Vale cada minuto invertido.",
     videoUrl: "https://youtu.be/JN2Kp5Z3fQc",
-    thumbnailUrl: "/lovable-uploads/3e9e4c80-ea08-47b6-b8c3-5c2870a4aed7.png",
+    thumbnailUrl: "lovable-uploads/3e9e4c80-ea08-47b6-b8c3-5c2870a4aed7.png",
   },
   {
     id: "t4",
@@ -152,7 +153,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Ciberseguridad & IA",
     testimonial: "El enfoque analítico del programa revolucionó mi proceso de toma de decisiones.",
     videoUrl: "https://youtu.be/RY_dzC2AZGw",
-    thumbnailUrl: "/lovable-uploads/03ef3099-c01a-4f30-ba70-ff825c04da03.png",
+    thumbnailUrl: "lovable-uploads/03ef3099-c01a-4f30-ba70-ff825c04da03.png",
   },
   {
     id: "t5",
@@ -160,7 +161,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Inteligencia Artificial",
     testimonial: "La formación práctica me ha permitido destacar entre otros profesionales del sector.",
     videoUrl: "https://youtu.be/Yyw3fs355ik",
-    thumbnailUrl: "/lovable-uploads/912e8f56-f5d9-4682-822c-7f0da4b1f0bd.png",
+    thumbnailUrl: "lovable-uploads/912e8f56-f5d9-4682-822c-7f0da4b1f0bd.png",
   },
   {
     id: "t6",
@@ -168,7 +169,7 @@ export const testimonials: Testimonial[] = [
     role: "Alumno del Máster en Data Science & IA",
     testimonial: "Las herramientas y conocimientos adquiridos me han abierto nuevas oportunidades laborales.",
     videoUrl: "https://youtu.be/6kzffPuLCUg",
-    thumbnailUrl: "/lovable-uploads/dc673ab1-a2ec-412e-b662-ab96aeb0d0f5.png",
+    thumbnailUrl: "lovable-uploads/dc673ab1-a2ec-412e-b662-ab96aeb0d0f5.png",
   },
 ];
 
