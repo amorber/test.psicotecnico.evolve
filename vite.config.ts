@@ -1,14 +1,16 @@
 
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Detectar si estamos en un dominio personalizado mediante variable de entorno
-  // Por defecto, usaremos '/' como base para dominios personalizados
-  const base = process.env.CUSTOM_DOMAIN === 'true' ? '/' : (mode === 'production' ? '/test.psicotecnico.evolve/' : '/');
+  // Cargar variables de entorno
+  const env = loadEnv(mode, process.cwd(), '');
+  
+  // Detectar si estamos en un dominio personalizado
+  const base = env.CUSTOM_DOMAIN === 'true' ? '/' : (mode === 'production' ? '/test.psicotecnico.evolve/' : '/');
   
   return {
     base,
