@@ -119,6 +119,36 @@ export const questions: Question[] = [
       { id: "q9a4", text: "Tengo dudas, pero también determinación", value: 25 },
     ],
   },
+  {
+    id: "q10",
+    text: "¿Qué es un lenguaje de programación?",
+    answers: [
+      { id: "q10a1", text: "Google Chrome", value: 0 },
+      { id: "q10a2", text: "Python", value: 25 },
+      { id: "q10a3", text: "Kali", value: 0 },
+      { id: "q10a4", text: "HTML5", value: 0 },
+    ],
+  },
+  {
+    id: "q11",
+    text: "¿Para qué sirve una base de datos?",
+    answers: [
+      { id: "q11a1", text: "Para guardar y consultar información de forma estructurada", value: 25 },
+      { id: "q11a2", text: "Para navegar por páginas web", value: 0 },
+      { id: "q11a3", text: "Para diseñar gráficos en 3D", value: 0 },
+      { id: "q11a4", text: "Para escribir textos largos", value: 0 },
+    ],
+  },
+  {
+    id: "q12",
+    text: "¿Qué herramienta se asocia más con el análisis de datos?",
+    answers: [
+      { id: "q12a1", text: "Canva", value: 0 },
+      { id: "q12a2", text: "Figma", value: 0 },
+      { id: "q12a3", text: "Excel", value: 25 },
+      { id: "q12a4", text: "WhatsApp", value: 0 },
+    ],
+  },
 ];
 
 // Updated testimonial data with corrected URLs to use BASE_URL when deployed
