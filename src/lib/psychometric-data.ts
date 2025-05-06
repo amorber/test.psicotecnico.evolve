@@ -205,15 +205,15 @@ export const testimonials: Testimonial[] = [
 
 // Calculate test results based on user answers
 export const calculateTestResult = (selectedAnswers: Record<string, Answer>): TestResult => {
-  // Always return 87% regardless of the answers
-  const percentage = 87;
+  // Generate a random percentage between 80 and 100
+  const percentage = Math.floor(Math.random() * 21) + 80;
   
   // These values won't be displayed anymore but we still need to return them
   const strengthArea = "conocimientos generales de negocios";
   const improvementArea = "habilidades fundamentales";
   
-  // Customized assessment message
-  const overallAssessment = "Tu perfil encaja al 87% con nuestro máster: tienes la base perfecta y este programa será el impulso que te llevará al siguiente nivel profesional.";
+  // Customized assessment message with the random percentage
+  const overallAssessment = `Tu perfil encaja al ${percentage}% con nuestro máster: tienes la base perfecta y este programa será el impulso que te llevará al siguiente nivel profesional.`;
   
   return {
     percentage,
